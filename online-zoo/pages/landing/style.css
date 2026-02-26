@@ -350,6 +350,7 @@ h1{
     flex-shrink: 0;
     position: relative;
     overflow: hidden;
+    border-radius: 5px;
 }
 
 .card-wrapper::-webkit-scrollbar {
@@ -442,6 +443,85 @@ h1{
     width: 27px;
     height: 24px;
 }
+
+.pay-and-feed{
+    width: 100%;
+    height: 2637px;
+    background-color: #20113D;
+    margin-top: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.pay-and-feed h2{
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    align-items: center;
+    color: #FFFFFF;
+    padding-top: 20px;
+}
+
+.numeration{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 50px;
+    width: 100%;
+    padding-left: 10px;
+
+}
+.xazi{
+    width: 273px;
+    background-color: #FFFFFF;
+    border-radius: 1px;
+    height: 3px;
+}
+
+.numeration span{
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 130%;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+}
+
+.pay-and-feed img{
+    width: 320px;
+    height: 208px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-top:30px;
+}
+
+.pay-and-feed img:nth-of-type(2){
+    width: 106px;
+    height: 80px;
+}
+.pay-and-feed h2:nth-of-type(2){
+    padding-top: 30px;
+    line-height: 130%;
+}
+.pay-and-feed p{
+    color: #FFFFFF;
+    padding-top: 30px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: center;
+    width: 250px;
+    
+}
+
+.pay-and-feed img:nth-of-type(4){
+    width: 100px;
+    height: 80px;
+}
+
 
 @media screen and (min-width: 640px) {
     .hero{
@@ -764,6 +844,7 @@ h1{
     line-height: 150%;
     width: 560px;
     height: 189px;
+    display: block;
 }
 
 }
