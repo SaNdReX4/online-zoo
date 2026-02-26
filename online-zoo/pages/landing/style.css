@@ -219,6 +219,9 @@ h1{
     height: 446px;
     background-color: #20113D;
     margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .your-donation h2 {
@@ -241,6 +244,8 @@ h1{
     line-height: 130%;
     letter-spacing: 0%;
     text-align: center;
+    text-transform: none;
+    
     
 }
 
@@ -253,7 +258,189 @@ h1{
     font-size: 21px;
     line-height: 150%;
     letter-spacing: 0%;
+}
 
+.donate-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    border: 1px solid #FFFFFF; 
+    border-radius: 5px;
+    overflow: hidden; 
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    justify-content: flex-end;
+    height: 50px;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #20113D; 
+    padding-right: 30px;
+}
+
+
+
+.donate-input {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    outline: none;
+    width: 160px; 
+}
+
+
+.donate-submit {
+    background-color: #F58021; 
+    border: none;
+    padding: 0 20px;
+    height: 50px; 
+    cursor: pointer;
+    display: flex;
+    transition: 0.3s;
+    border-radius: 4px;
+}
+
+.donate-submit:hover {
+    background-color: #F58021;
+}
+
+.donate-submit img {
+    width: 20px;
+}
+.input-wrapper span{
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.meet-some-our-pets h2{
+    color: #00A092;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    padding-top: 50px;
+}
+
+.meet-some-our-pets p{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: center;
+    padding-top: 30px;
+}
+
+.card{
+    width: 300px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-wrapper::-webkit-scrollbar {
+    display: none; 
+}
+.card-wrapper {
+    -ms-overflow-style: none;  
+    scrollbar-width: none;     
+}
+
+.card-wrapper{
+    display: flex;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding-top: 30px;
+    gap: 20px;
+    padding-left: 10px;
+
+    scrollbar-width: thin;     
+    -webkit-overflow-scrolling: touch;
+}
+
+.card-lable {
+    width: 90px;
+    height: 60px;
+    background-color: #20113D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 5px ;
+    position: absolute;
+}
+.card-lable span {      
+    color: #FFFFFF;            
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 130%;
+    letter-spacing: 0%;
+    text-align: center;
+}
+
+.card img {
+    width: 362px;
+    height: 333px;
+    max-width: 100%;
+    border-top-left-radius:5px ;
+    border-top-right-radius:5px;
+    object-fit: cover;
+}
+.card-text{
+    background-color: #20113D;
+    height: 267px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.card-text h2{
+    color: #FFFFFF;
+    text-transform: none;
+    padding-top: 15px;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 130%;
+    letter-spacing: 0%;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.card-text p{
+    padding-top: 15px;
+    width: 251px;
+    height: 103px;
+    color: #FFFFFF;
+}
+
+.card-text a{
+    color: #F58021;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    padding-top: 45px;
+}
+.card-text a img{
+    width: 27px;
+    height: 24px;
 }
 
 @media screen and (min-width: 640px) {
