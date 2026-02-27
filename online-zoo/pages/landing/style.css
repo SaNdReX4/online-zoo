@@ -982,9 +982,69 @@ footer hr{
     display: none;
 }
 
-.how-we-work-text span {
+.how-we-work-text p  {
     display: none;
 }
+
+.how-we-work-text span{
+    display: flex;
+    font-weight: 400;
+    font-size: 18px;
+    line-height:150%;
+    letter-spacing: 0;
+    width: 600px;
+    padding-top: 30px;
+}
+
+.your-donation{
+    margin-top: 100px;
+    height: 100%;
+}
+
+.your-donation h2:nth-of-type(1){
+    width: 556px;
+    font-size: 42px;
+    padding-top: 50px;
+}
+
+.your-donation p{
+    width: 576px;
+}
+
+.donate-form{
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    border: 1px solid #FFFFFF;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    width: 363px;
+    justify-content: flex-end;
+    height: 74px;
+}
+
+.input-wrapper {
+    padding-right: 48px;
+}
+
+.donate-submit{
+    width: 74px;
+    height: 75px;
+    justify-content: center;
+}
+
+.meet-some-our-pets h2:nth-of-type(1){
+    font-weight: 600;
+    font-size: 54px;
+    width: 394px;
+}
+
+
+
 
 
 }
