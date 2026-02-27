@@ -28,3 +28,36 @@ dots.forEach((dot, index) => {
         container.style.transform = `translateX(-${offset}px)`;
     });
 });
+
+
+
+
+const userContainer = document.getElementById('cards-container');
+const userDots = document.querySelectorAll('.dot');
+
+userDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        userContainer.style.transform = `translateX(${index * -320}px)`;
+        
+        userDots.forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+    });
+});
+
+
+const animalContainer = document.getElementById('animal-cards-container');
+const animalDots = document.querySelectorAll('.animal-dot'); 
+
+animalDots.forEach((dot, index) => {
+    dot.addEventListener('click', () => {
+        
+        animalContainer.style.transform = `translateX(${index * -320}px)`;
+        
+        
+        animalDots.forEach(d => d.classList.remove('active'));
+        dot.classList.add('active');
+    });
+});
+
+
+

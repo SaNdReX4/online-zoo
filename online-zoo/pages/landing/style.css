@@ -554,11 +554,11 @@ h1{
     height: 22px !important;
 }
 
-/* ჩავწვდეთ მხოლოდ იმ სურათს, რომელიც .btn-live-ის შიგნით არის ამ სექციაში */
+
 .pay-and-feed .btn-live .arrow {
-    width: 24px !important;  /* შენი სასურველი ზომა */
+    width: 24px !important;  
     height: 22px !important;
-    margin-top: 0 !important; /* რომ სექციის img-ს margin-top არ აიღოს */
+    margin-top: 0 !important; 
     object-fit: contain !important;
 }
 
@@ -690,6 +690,153 @@ h1{
     opacity: 1;
     transform: scale(1.1);
 }
+
+.btn-feedback{
+    margin-top: 50px;
+    border: 1px solid white; 
+    background: none;
+}
+
+
+
+
+.panda-footer-image {
+    position: relative;
+    width: 320px; /* */
+    height: 450px; 
+    overflow: hidden;
+}
+
+.panda-footer-image img {
+    
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.3); 
+    transform-origin: 30% 80%;
+    display: block;
+}
+
+
+.panda-footer-image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; 
+    
+    background: linear-gradient(to bottom, 
+                rgba(32, 17, 61, 1) 0%,    
+                rgba(32, 17, 61, 0.8) 25%, 
+                rgba(32, 17, 61, 0) 60%);  
+    z-index: 2;
+    pointer-events: none;
+}
+
+.care-for-animals{
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+.care-for-animals h2{
+    margin-top: 50px;
+    color: #00A092;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.care-for-animals p{
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: center;
+    color: #20113D;
+    padding-top: 30px;
+}
+
+.care-for-animals .card-text p{
+    color: #FFFFFF;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    text-align: center;
+    width: 245px;
+    padding-top: 15px;
+}
+
+.care-for-animals .card{
+    height: 570px;
+}
+
+.meore-card-img{
+    height: 373px !important;
+}
+
+
+#animal-cards-container {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.5s ease-in-out;
+    width: max-content; 
+}
+
+
+.care-for-animals {
+    overflow: hidden;
+    width: 100%;
+}
+
+
+.care-for-animals .dot {
+    border: 2px solid #000000; 
+    background-color: transparent;
+}
+
+.care-for-animals .dot.active {
+    background-color: #000000; 
+}
+
+
+.animal-dot {
+    width: 8px;
+    height: 8px;
+    background-color: transparent; 
+    border: 2px solid #000000; 
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.animal-dot.active {
+    background-color: #000000; 
+}
+
+.btn-favorite{
+    color: #20113D;
+    border: 1px solid #20113D;
+    text-transform: none;
+}
+
+.lemur{
+    padding-top: 80px;
+    
+}
+
+/* */
+.butona{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 
 @media screen and (min-width: 640px) {
     .hero{
