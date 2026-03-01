@@ -257,11 +257,13 @@ h1 {
   height: 50px;
 }
 
+/*  */
+
 .input-wrapper {
   display: flex;
   align-items: center;
   background-color: #20113d;
-  padding-right: 30px;
+  padding-right: 30px; 
 }
 
 .donate-input {
@@ -291,6 +293,9 @@ h1 {
 .donate-submit img {
   width: 20px;
 }
+
+/*  */
+
 .input-wrapper span {
   color: #ffffff;
   font-weight: 600;
@@ -671,7 +676,7 @@ h1 {
   height: 450px;
   overflow: hidden;
 }
-
+/* 2 */
 .panda-footer-image img {
   height: 100%;
   object-fit: cover;
@@ -679,7 +684,7 @@ h1 {
   transform-origin: 30% 80%;
   display: block;
 }
-
+/* 1 */
 .panda-footer-image::after {
   content: "";
   position: absolute;
@@ -794,7 +799,7 @@ h1 {
   flex-direction: column;
   align-items: center;
 }
-
+/* 5 */
 footer {
   background-color: #20113d;
   margin-top: 80px;
@@ -835,18 +840,18 @@ footer {
   text-transform: none;
   margin-top: 29px;
 }
-
+/* 4 */
 .footer-social-links {
   display: flex;
   padding-top: 30px;
   gap: 50px;
 }
-
+/* 3 */
 footer hr {
   width: 100%;
   margin-top: 30px;
 }
-
+/* 2 */
 .footer-ended {
   display: flex;
   flex-direction: column;
@@ -873,6 +878,13 @@ footer hr {
 .damatebiti-img{
   display: none;
 }
+
+
+/*  */
+
+
+
+
 
 @media screen and (min-width: 640px) {
   .btn-640px {
@@ -990,6 +1002,8 @@ footer hr {
     justify-content: flex-end;
     height: 74px;
   }
+
+  /*  */
 
   .input-wrapper {
     padding-right: 48px;
@@ -1119,7 +1133,7 @@ footer hr {
 .btn-368px{
     width: 368px;
 }
-
+/* 1 */
 .panda-footer-image{
     width: 640px;
     height: 998px;
@@ -1390,7 +1404,7 @@ footer hr {
     height: 74px;
   }
 
- 
+ /*  */
   .input-wrapper {
     padding-left: 20px;
     padding-right: 0;
@@ -1710,7 +1724,7 @@ footer{
     grid-template-rows: auto auto;
     row-gap: 50px;
     align-items: center;
-    max-width: 1200px;
+    width: 100%;
     margin: 148px auto 0 auto;
     padding: 80px 40px;
   }
@@ -2058,7 +2072,7 @@ footer{
     
     .meore-card-img {
         width: 100% !important;
-        height: 373px !important; /* დაარეგულირე სურათის სიმაღლე გემოვნებით */
+        height: 373px !important; 
         object-fit: cover !important;
     }
 
