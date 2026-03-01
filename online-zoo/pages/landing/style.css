@@ -870,6 +870,10 @@ footer hr {
   display: none;
 }
 
+.damatebiti-img{
+  display: none;
+}
+
 @media screen and (min-width: 640px) {
   .btn-640px {
     display: flex;
@@ -1204,7 +1208,9 @@ footer hr {
         gap: 50px;
     }
 
-    
+    .damatebiti-img{
+      display: none;
+    }
 
 }
 
@@ -1541,6 +1547,7 @@ footer hr {
   width: 100%;
   padding-left: 141px;
   margin-top: 50px;
+  scrollbar-width: none;
 } 
 
 .card-users-text{
@@ -1567,6 +1574,205 @@ footer hr {
 .what-our-yousers-think-text{
   padding-left: 40px;
 }
+/*  */
+
+.what-our-yousers-think {
+        position: relative;
+       
+        padding-top: 100px; 
+    }
+
+    
+    .panda-footer-image {
+        width: 100%; 
+        height: 1600px;
+        z-index: 1; 
+        pointer-events: none; 
+        position: absolute;
+    }
+
+    
+    .what-our-yousers-think-text,
+    .card-users-wrapper,
+    .btn-feedback {
+        position: relative;
+        z-index: 2; 
+    }
+
+    
+    .card-users-wrapper {
+        margin-top: 50px; 
+    }
+
+    .care-for-animals h2{
+      width: 655px;
+      font-weight: 600;
+      padding-top: 150px;
+    }
+
+    .care-for-animals p{
+      line-height: 130%;
+    }
+    .pagination-dots-2{
+      display: none;
+    }
+
+    .care-for-animals{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .care-for-animals-card{
+      height: 639px !important;
+      width: 455px;
+      display: flex;
+      flex-direction: column;
+    }
+
+#animal-cards-container {
+        display: flex;
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 30px; 
+        width: 100%;
+        max-width: 1200px;
+        margin: 50px auto;
+        overflow: visible; 
+    }
+
+    
+    .care-for-animals-card {
+        display: flex; 
+        flex-direction: column; 
+        height: 639px !important;
+        max-width: 458px; 
+        height: auto;
+        background-color: #20113D;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    
+    .meore-card-img {
+        width: 100%;
+        height: 373px; 
+        object-fit: cover;
+    }
+
+    
+    .care-for-animals-card-text {
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        background-color: #20113D;
+    }
+
+    .care-for-animals-card-text p {
+        width: 390px !important; 
+        height: 81px;
+        color: #ffffff;
+        margin-bottom: 20px;
+    }
+
+    
+    .butona {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-top: 40px;
+    }
+
+    .btn-368px{
+      margin-left: 135px;
+    }
+
+.damatebiti-img{
+  width: 940px;
+  border-radius: 5px;
+  display: block;
+}
+
+.lemur{
+  height: 668px;
+}
+
+footer{
+  margin-top: 148px;
+}
+
+/*  */
+
+  footer {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-template-rows: auto auto;
+    row-gap: 50px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 148px auto 0 auto;
+    padding: 80px 40px;
+  }
+
+ 
+
+  .logos {
+    grid-column: 1;
+    flex-direction: row;
+    gap: 30px;
+    padding-top: 0;
+  }
+
+  .about {
+    grid-column: 2;
+  }
+
+  .about ul {
+    padding-top: 0;
+    width: auto;
+    gap: 20px;
+  }
+
+  .footer-btn {
+    grid-column: 3;
+    margin-top: 0;
+    width: 320px;
+    margin-left: 40px;
+  }
+
+ 
+
+  footer hr {
+    grid-column: 1 / -1;
+    width: 100%;
+    margin: 0;
+  }
+
+  
+
+  .footer-ended {
+    order: 4;
+        display: flex;
+        flex-direction: row;
+        gap:50px
+  }
+
+  
+    .footer-social-links {
+        grid-column: 3;
+        grid-row: 3;
+        justify-content: flex-end;
+        align-self: end;
+        gap: 30px;
+        align-items: center;
+        padding-bottom: 50px;
+  }
+
+
+
+
+
 
 }
 
