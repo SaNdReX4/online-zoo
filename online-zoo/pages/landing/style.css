@@ -1334,8 +1334,240 @@ footer hr {
     width: 640px;
   }
   .how-we-work-text span {
-    display: none;
+    width: 560px;
   }
+
+  .your-donation{
+    display: flex;
+    flex-direction: row;
+    gap: 100px;
+    height: 313px;
+    justify-content: center;
+  }
+
+  .your-donation h2{
+    text-align: left;
+    padding-top: 0;
+  }
+  .your-donation h2:nth-of-type(1){
+    padding: 0;
+  }
+
+  .your-donation p{
+    text-align: left;
+  }
+
+
+.Quick-Donate-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: auto; 
+  }
+
+  
+  .your-donation h2:nth-of-type(2) {
+    width: auto;          
+    text-align: left;      
+    padding-top: 0;        
+    margin-left: 0;        
+    font-size: 24px;      
+    margin-bottom: 20px;   
+  }
+
+  
+  .donate-form {
+    margin-left: 0;        
+    margin-right: 0;
+    width: 320px;         
+    justify-content: space-between;
+    height: 74px;
+  }
+
+ 
+  .input-wrapper {
+    padding-left: 20px;
+    padding-right: 0;
+    background-color: transparent;
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-start;
+  }  
+    
+.Quick-Donate-wrapper h2 {
+        font-size: 26px !important;
+        width: auto !important;
+        text-align: left !important;
+        margin-left: 0 !important;
+        padding: 0 !important;
+        display: block !important;
+    }
+
+
+#meet-some-our-pets-satauri{
+    width: 637px;
+    padding-top: 100px;
+}
+
+.meet-some-our-pets-satauri-wrapper p {
+    width: 830px ;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 130%;
+}
+.meet-some-our-pets .card-wrapper {
+    padding-top: 190px ;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
+    padding-left: 40px;
+  }
+
+.meet-some-our-pets-satauri-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.meet-some-our-pets .card{
+    width: 455px;
+    height: 716px;
+}
+
+.card > img {
+  width: 455px;
+  height: 436px;
+}
+
+.meet-some-our-pets .card-text p{
+    width: 395px;
+}
+.btn-favorite{
+    width: 359px;
+}
+
+/*  */
+
+
+.pay-and-feed {
+  display: grid !important;
+  
+  grid-template-columns: 1fr 1.2fr; 
+  column-gap: 60px;
+  row-gap: 20px;
+  justify-items: center;
+}
+
+
+#pay-and-feed-h2-640px,
+.numeration {
+  grid-column: 1 / span 2;
+}
+
+
+.pay-and-feed > img:not([id="pay-and-feed-logos"]) {
+  grid-column: 1;
+  width: 550px;
+  height: 358px;
+  max-width: 500px; 
+  border-radius: 5px;
+  
+  grid-row: span 3; 
+  margin-left: 40px;
+}
+
+
+#pay-and-feed-logos,
+.pay-and-feed h2:not(#pay-and-feed-h2-640px),
+.pay-and-feed p {
+  grid-column: 2;
+  margin: 0;
+  padding-bottom: 15px;
+}
+
+
+#pay-and-feed-logos {
+  width: 82px; 
+  height: auto;
+}
+
+
+.btn-live-2 {
+  grid-column: 1 / span 2;
+  justify-self: center;
+  margin-top: 118px;
+  margin-left: 200px;
+
+}
+
+
+.numeration {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.xazi {
+  flex-grow: 1;
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.card-users-container {
+  display: grid !important;
+  
+  grid-template-columns: repeat(2, 1fr) !important; 
+  
+  grid-template-rows: repeat(2, auto) !important; 
+  
+  gap: 30px !important; 
+  width: 100%;
+  max-width: 1160px; 
+  
+}
+
+
+.card-users {
+  width: 515px;
+  height: 463px;
+  background: #ffffff; 
+  border-radius: 5px;
+  box-sizing: border-box;
+  margin: 0;
+}                
+.card-users-wrapper{
+  width: 100%;
+  padding-left: 141px;
+  margin-top: 50px;
+} 
+
+.card-users-text{
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+  padding-left: 50px;
+}
+
+.card-users p{
+  width: 415px;
+  text-align: start;
+}
+
+.card-users h3{
+  width: 306px;
+  text-align: start;
+}
+
+.card-users h3:nth-of-type(2){
+  text-align: start;
+}
+
+.what-our-yousers-think-text{
+  padding-left: 40px;
+}
+
 }
 
 @media screen and (min-width: 1920px) {
