@@ -1,4 +1,4 @@
-// Enum-ის გამოყენება დავალების მოთხოვნისთვის
+
 export enum AnimalRegion {
     CentralChina = "Native to central China",
     Africa = "Native to Africa",

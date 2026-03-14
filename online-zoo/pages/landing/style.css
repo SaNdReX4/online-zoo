@@ -818,8 +818,7 @@ footer {
   padding-top: 50px;
 }
 
-.logos img:nth-of-type(1) {
-}
+
 
 .about ul {
   padding-top: 29px;
@@ -881,6 +880,34 @@ footer hr {
   display: none;
 }
 
+
+.pets-navigation, .feedback-navigation {
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end; 
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 200;
+}
+
+.arrow-btn {
+    cursor: pointer;
+    background: #FFFFFF;
+    border: 1px solid #1A1A40; 
+    border-radius: 8px; 
+    width: 40px;
+    height: 40px;
+    
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+
+
+.arrow-btn:hover {
+    background-color: #f0f0f0; 
+}
 
 /*  */
 
@@ -2394,5 +2421,5 @@ footer{
 }
 
 .promo-other-btn {
-    grid-column: span 1; /* ან span 2 თუ გინდა დიდი იყოს */
+    grid-column: span 1; 
 }
