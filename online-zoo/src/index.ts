@@ -1,5 +1,7 @@
 import type { Animal, Feedback, ApiResponse } from './types.js';
 
+const nameInputelement = document.querySelector("#email")
+
 let allFeedbacks: Feedback[] = []; 
 let allPets: Animal[] = []; 
 let currentPetIndex = 0; 
@@ -173,42 +175,76 @@ const userPopup = document.getElementById('user-popup') as HTMLElement;
 const unauthLinks = document.getElementById('unauthorized-links') as HTMLElement;
 const authInfo = document.getElementById('authorized-info') as HTMLElement;
 const displayName = document.getElementById('user-display-name') as HTMLElement;
+const displayEmail = document.getElementById('user-display-email') as HTMLElement;
 const logoutBtn = document.getElementById('logout-btn') as HTMLButtonElement;
 
 const checkAuthStatus = (): void => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
     const userName = localStorage.getItem('userName');
+    const userEmail = localStorage.getItem('userEmail');
 
-    if (isLoggedIn === 'true' && userName) {
-        
+    if (userName && userName !== 'undefined') {
         unauthLinks.classList.add('hidden');
-        unauthLinks.style.display = 'none'; 
-        
         authInfo.classList.remove('hidden');
-        authInfo.style.display = 'block'; 
         
         displayName.textContent = userName;
+        if (displayEmail && userEmail && userEmail !== 'undefined') {
+            displayEmail.textContent = userEmail;
+        }
     } else {
-        
         unauthLinks.classList.remove('hidden');
-        unauthLinks.style.display = 'block';
-        
         authInfo.classList.add('hidden');
-        authInfo.style.display = 'none';
     }
 };
 
+
+const validateToken = async (): Promise<void> => {
+    const token = localStorage.getItem('userToken');
+    if (!token) return;
+
+    try {
+        const response = await fetch('https://vsqsnqnxkh.execute-api.eu-central-1.amazonaws.com/prod/auth/profile', {
+            method: 'GET',
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            
+            
+            const nameFromServer =   result.data.name;
+            const emailFromServer =  result.data.email;  
+            console.log(result)
+
+            if (nameFromServer) {
+                localStorage.setItem('userName', nameFromServer);
+                if (emailFromServer) localStorage.setItem('userEmail', emailFromServer);
+                checkAuthStatus(); // UI-ს განახლება
+            }
+        } else if (response.status === 401) {
+        
+            logoutBtn.click(); 
+        }
+    } catch (error) {
+        console.error('Token validation failed:', error);
+    }
+};
+
+// აიქონზე დაჭერა
 userIcon.addEventListener('click', (e) => {
     e.stopPropagation(); 
     userPopup.classList.toggle('hidden');
     checkAuthStatus(); 
 });
 
+// Logout
 logoutBtn.addEventListener('click', () => {
-    localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('userName');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('userToken');
+    localStorage.removeItem('isLoggedIn'); 
     window.location.reload(); 
 });
+
 
 document.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
@@ -217,4 +253,10 @@ document.addEventListener('click', (e) => {
     }
 });
 
-checkAuthStatus();
+
+checkAuthStatus(); 
+
+
+validateToken();
+
+

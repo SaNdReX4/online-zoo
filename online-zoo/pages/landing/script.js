@@ -1,4 +1,9 @@
+const emailInputelement = document.querySelector("#email")
+const nameInputelement = document.querySelector("#fullName")
+
 // burger menu
+
+
 const burger = document.getElementById('burger-btn');
 const closeBtn = document.getElementById('close-btn');
 const nav = document.getElementById('nav-menu');
@@ -73,6 +78,11 @@ document.addEventListener('DOMContentLoaded', () => {
     openBtn.onclick = () => overlay.classList.add('active');
     closeBtn.onclick = () => overlay.classList.remove('active');
     window.onclick = (e) => { if(e.target == overlay) overlay.classList.remove('active'); }
+    const localemail=localStorage.getItem('userEmail');
+    emailInputelement.value=localemail
+
+    const localname=localStorage.getItem('userName');
+    nameInputelement.value=localname
 
     // ნაბიჯების გადართვა
     const showStep = (stepNumber) => {

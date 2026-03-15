@@ -1,6 +1,10 @@
+import type { User, AuthResponse, ApiError } from './types.js';
+
+const BASE_URL = 'https://vsqsnqnxkh.execute-api.eu-central-1.amazonaws.com/prod';
+
 const REGEX = {
-    LOGIN: /^[a-zA-Z][a-zA-Z0-9]{2,}$/,
-    PASSWORD: /^(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/
+    LOGIN: /^[a-zA-Z][a-zA-Z0-9]{2,}$/, 
+    PASSWORD: /^(?=.*[!@#$%^&*(),.?":{}|<>]).{6,}$/ 
 };
 
 const loginForm = document.getElementById('login-form') as HTMLFormElement;
@@ -8,56 +12,115 @@ const loginInput = document.getElementById('login-user') as HTMLInputElement;
 const passInput = document.getElementById('login-pass') as HTMLInputElement;
 const loginBtn = document.getElementById('login-btn') as HTMLButtonElement;
 
-const validateInput = (input: HTMLInputElement, errorId: string, regex: RegExp, errorMsg: string): boolean => {
+const validateField = (input: HTMLInputElement, errorId: string, regex: RegExp, errorMsg: string): boolean => {
     const errorSpan = document.getElementById(errorId) as HTMLElement;
     const isValid = regex.test(input.value);
 
     if (!isValid) {
         input.classList.add('invalid');
-        errorSpan.textContent = errorMsg;
+        if (errorSpan) errorSpan.textContent = errorMsg;
     } else {
         input.classList.remove('invalid');
-        errorSpan.textContent = '';
+        if (errorSpan) errorSpan.textContent = '';
     }
-    
-    toggleSubmitButton();
+    checkFormValidity();
     return isValid;
 };
 
-const toggleSubmitButton = (): void => {
-    const isLoginValid = REGEX.LOGIN.test(loginInput.value);
-    const isPassValid = REGEX.PASSWORD.test(passInput.value);
-    loginBtn.disabled = !(isLoginValid && isPassValid);
+const checkFormValidity = (): void => {
+    const isFormValid = 
+        REGEX.LOGIN.test(loginInput.value) && 
+        REGEX.PASSWORD.test(passInput.value);
+    
+    loginBtn.disabled = !isFormValid;
 };
 
-loginInput.addEventListener('blur', () => {
-    validateInput(loginInput, 'login-error', REGEX.LOGIN, 'Min 3 chars, start with letter (english only)');
+[
+    { input: loginInput, err: 'login-error', reg: REGEX.LOGIN, msg: 'Invalid login format' },
+    { input: passInput, err: 'pass-error', reg: REGEX.PASSWORD, msg: 'Min 6 chars + 1 special char(!@#$%^&*)' }
+].forEach(item => {
+    item.input.addEventListener('blur', () => validateField(item.input, item.err, item.reg, item.msg));
+    item.input.addEventListener('input', () => {
+        if (item.input.classList.contains('invalid')) {
+            validateField(item.input, item.err, item.reg, item.msg);
+        }
+        checkFormValidity();
+    });
 });
 
-loginInput.addEventListener('focus', () => {
-    loginInput.classList.remove('invalid');
-    (document.getElementById('login-error') as HTMLElement).textContent = '';
-});
+// პროფილის წამოღება - აქ დავამატე token პარამეტრი!
+const fetchUserProfile = async (token: string): Promise<void> => {
+    try {
+        const response = await fetch(`${BASE_URL}/auth/profile`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
 
-passInput.addEventListener('blur', () => {
-    validateInput(passInput, 'pass-error', REGEX.PASSWORD, 'Min 6 chars + 1 special char (!@#$%^&*)');
-});
+        if (response.ok) {
+            const userData: User = await response.json();
+            console.log(userData)
+            // აი აქ იწერება მონაცემები, რაც გაკლდა
+            localStorage.setItem('userName', userData.name);
+            localStorage.setItem('userEmail', userData.email);
+            console.log('Profile saved!');
+        }
+    } catch (error) {
+        console.error('Profile fetch error:', error);
+    }
+};
 
-passInput.addEventListener('focus', () => {
-    passInput.classList.remove('invalid');
-    (document.getElementById('pass-error') as HTMLElement).textContent = '';
-});
+const loginUser = async (): Promise<void> => {
+    const loginData = {
+        login: loginInput.value,
+        password: passInput.value
+    };
 
+    try {
+        loginBtn.disabled = true;
+        loginBtn.textContent = 'Logging in...';
 
-loginForm.addEventListener('submit', async (e: Event) => {
+        const response = await fetch(`${BASE_URL}/auth/login`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(loginData)
+        });
+
+        if (response.ok) {
+            const result: any = await response.json();
+
+            const token=result.data.access_token;
+            const user=result.data.user;
+            
+
+            
+            
+            // 1. ჯერ ვინახავთ სტატუსს და ტოკენს
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('userToken', token );
+            localStorage.setItem('userEmail', user.email );
+            localStorage.setItem('userName', user.name );
+
+            // 2. ველოდებით (await) პროფილის წამოღებას და ტოკენს პირდაპირ ვაწვდით
+            
+            
+            // 3. მხოლოდ მას შემდეგ გადავდივართ, რაც მონაცემები ლოკალშია
+            window.location.href = '../landing/index.html';
+        } else {
+            const errorData: ApiError = await response.json();
+            alert(errorData.message || 'Incorrect login or password');
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        alert('Something went wrong. Please try again.');
+    } finally {
+        loginBtn.disabled = false;
+        loginBtn.textContent = 'Login';
+    }
+};
+
+loginForm?.addEventListener('submit', (e) => {
     e.preventDefault();
-    
-    console.log("Attempting to sign in...");
-
-    
-    localStorage.setItem('isLoggedIn', 'true');
-    localStorage.setItem('userName', loginInput.value);
-
-    
-    window.location.href = '../landing/index.html';
+    loginUser();
 });

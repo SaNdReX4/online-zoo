@@ -28,6 +28,24 @@ export interface Feedback {
     userIcon?: string;   
 }
 
+export interface User {
+    id?: number;      
+    name: string;
+    email: string;
+    login: string;
+    password?: string; 
+}
+
+// ლოგინის პასუხისთვის
+export interface AuthResponse {
+    token: string;
+    user: User;
+}
+
+// შეცდომების მართვისთვის
+export interface ApiError {
+    message: string;
+}
 
 export interface ApiResponse<T> {
     data: T[];
