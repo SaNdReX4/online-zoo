@@ -2364,6 +2364,63 @@ select.input {
 
 
 
+/* Step 3 სპეციფიკური ბადე (Grid) */
+.payment-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* ბარათის ნომერი უფრო განიერია ვიდრე CVV */
+    gap: 20px;
+}
+
+.field-group {
+    margin-bottom: 15px;
+}
+
+.field-group .label {
+    font-size: 12px;
+    font-weight: bold;
+    color: #4B928F; /* მწვანე ტონი სურათიდან */
+    margin-bottom: 5px;
+}
+
+.card-expiry {
+    grid-column: span 2; /* თარიღი იკავებს მთლიან სიგანეს */
+}
+
+.expiry-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.expiry-inputs .input {
+    width: 120px;
+}
+
+/* ჩეკბოქსის ლამაზი გასწორება */
+.recurring-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text);
+    margin: 10px 0;
+}
+
+.req { color: #FE9013; margin-right: 3px; }
+
+/* ღილაკის ტექსტის გასწორება */
+#complete-donation::after {
+    content: '→';
+    margin-left: 8px;
+}
+
+/* ინპუტების ფოკუსი */
+.input:focus {
+    outline: 1px solid #4B928F;
+    border-color: #4B928F;
+}
+
+
+
 
 /* PROMO POP UP  */
 

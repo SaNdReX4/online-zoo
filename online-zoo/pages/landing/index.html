@@ -605,19 +605,66 @@
             </div>
 
             <div class="step" data-step="3">
-                <div class="section-head">Payment Details:</div>
-                <div class="content">
-                    <div class="label"><span class="req">*</span>Card Number</div>
-                    <input class="input" id="cardNumber" placeholder="0000 0000 0000 0000">
-                    <div class="footer">
-                        <div class="dots"><div class="dot active"></div><div class="dot active"></div><div class="dot active"></div></div>
-                        <div class="nav">
-                            <div class="back" id="backTo2">Back</div>
-                            <button class="btn-primary orange" type="button" id="complete">COMPLETE</button>
-                        </div>
-                    </div>
+    <div class="section-head">Payment Details:</div>
+    <div class="content">
+        
+        <div id="saved-cards-container" style="display: none; margin-bottom: 20px;">
+            <div class="label">Choose a saved card</div>
+            <select class="input" id="saved-cards-select">
+                <option value="">Select a card...</option>
+            </select>
+        </div>
+        <div class="label"><span class="req">*</span>Card Number</div>
+        <input class="input" id="cardNumber" placeholder="0000 0000 0000 0000">
+
+        <div class="payment-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
+            <div class="field-group">
+                <div class="label"><span class="req">*</span>CVV Number</div>
+                <input class="input" id="cvvNumber" placeholder="123" maxlength="3">
+            </div>
+
+            <div class="field-group">
+                <div class="label"><span class="req">*</span>Expiration Date</div>
+                <div style="display: flex; gap: 5px;">
+                    <select class="input" id="expMonth" style="padding: 10px 5px;">
+                        <option value="" disabled selected>Month</option>
+                        <option value="01">01</option><option value="02">02</option>
+                        <option value="03">03</option><option value="04">04</option>
+                        <option value="05">05</option><option value="06">06</option>
+                        <option value="07">07</option><option value="08">08</option>
+                        <option value="09">09</option><option value="10">10</option>
+                        <option value="11">11</option><option value="12">12</option>
+                    </select>
+                    <select class="input" id="expYear" style="padding: 10px 5px;">
+                        <option value="" disabled selected>Year</option>
+                        <option value="26">26</option><option value="27">27</option>
+                        <option value="28">28</option><option value="29">29</option>
+                        <option value="30">30</option>
+                    </select>
                 </div>
             </div>
+        </div>
+
+        <div class="recurring-check" id="saveCardWrapper" style="display: flex; align-items: center; gap: 8px; margin-top: 15px; font-size: 13px;">
+            <input type="checkbox" id="saveCardInfo">
+            <label for="saveCardInfo">Save card info for future donations</label>
+        </div>
+
+        <div class="footer">
+            <div class="dots">
+                <div class="dot active"></div>
+                <div class="dot active"></div>
+                <div class="dot active"></div>
+            </div>
+            <div class="nav">
+                <div class="back" id="backTo2">Back</div>
+                <button class="btn-primary orange" type="button" id="complete">COMPLETE</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
         </div>
     </div>
 

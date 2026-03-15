@@ -1,94 +1,83 @@
-import type { Animal, Feedback, ApiResponse } from './types.js';
-
-const nameInputelement = document.querySelector("#email")
-
-let allFeedbacks: Feedback[] = []; 
-let allPets: Animal[] = []; 
-let currentPetIndex = 0; 
+const nameInputelement = document.querySelector("#email");
+let allFeedbacks = [];
+let allPets = [];
+let currentPetIndex = 0;
 let currentFeedbackPage = 0;
 const FEEDBACKS_PER_PAGE = 4;
-
-async function loadLandingData(): Promise<void> {
+async function loadLandingData() {
     const petsContainer = document.getElementById('pets-container');
     const feedbackContainer = document.getElementById('cards-container');
-
-    if (petsContainer) petsContainer.innerHTML = '<p class="loader">Loading pets...</p>';
-    if (feedbackContainer) feedbackContainer.innerHTML = '<p class="loader">Loading feedback...</p>';
-
+    if (petsContainer)
+        petsContainer.innerHTML = '<p class="loader">Loading pets...</p>';
+    if (feedbackContainer)
+        feedbackContainer.innerHTML = '<p class="loader">Loading feedback...</p>';
     // --- შესწორება: ტოკენის წამოღება და ჰედერებში ჩამატება ---
     const token = localStorage.getItem('userToken');
-    const headers: HeadersInit = {
+    const headers = {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     };
-
     if (token && token !== 'undefined') {
         headers['Authorization'] = `Bearer ${token}`;
     }
-
     try {
         const [petsRes, feedbackRes] = await Promise.all([
             fetch('https://vsqsnqnxkh.execute-api.eu-central-1.amazonaws.com/prod/pets', { headers }),
             fetch('https://vsqsnqnxkh.execute-api.eu-central-1.amazonaws.com/prod/feedback', { headers })
         ]);
-
         // თუ ავტორიზაციით ერორს აგდებს (მაგ. 401), ვცადოთ ხელახლა ტოკენის გარეშე
-        let petsData: ApiResponse<Animal>;
-        let feedbackData: ApiResponse<any>;
-
+        let petsData;
+        let feedbackData;
         if (!petsRes.ok) {
             console.warn("ავტორიზებული რექვესტი ჩავარდა, ვცდილობთ საჯაროდ...");
             const publicPetsRes = await fetch('https://vsqsnqnxkh.execute-api.eu-central-1.amazonaws.com/prod/pets');
             petsData = await publicPetsRes.json();
-        } else {
+        }
+        else {
             petsData = await petsRes.json();
         }
-
         if (!feedbackRes.ok) {
             const publicFeedbackRes = await fetch('https://vsqsnqnxkh.execute-api.eu-central-1.amazonaws.com/prod/feedback');
             feedbackData = await publicFeedbackRes.json();
-        } else {
+        }
+        else {
             feedbackData = await feedbackRes.json();
         }
-
         allPets = petsData.data;
         allFeedbacks = feedbackData.data;
-
         // პოპაპის სელექტის შევსება
-        const petSelect = document.getElementById('pet-select') as HTMLSelectElement;
-        
+        const petSelect = document.getElementById('pet-select');
         if (petSelect && allPets) {
             petSelect.innerHTML = '<option value="" disabled selected>Choose your favourite</option>';
             allPets.forEach(pet => {
                 const option = document.createElement('option');
-                option.value = String(pet.id); 
-                option.textContent = pet.name; 
+                option.value = String(pet.id);
+                option.textContent = pet.name;
                 petSelect.appendChild(option);
             });
             console.log("სელექტი შეივსო წარმატებით");
         }
-
         if (petsContainer) {
             renderPets(allPets, petsContainer);
         }
-        
-        renderTestimonials(); 
+        renderTestimonials();
         setupPagination();
-        setupSliderControls(); 
-
+        setupSliderControls();
         console.log("მონაცემები წარმატებით წამოვიდა სერვერიდან");
-
-    } catch (error) {
+    }
+    catch (error) {
         console.error("Error fetching data:", error);
         const errorMsg = 'Something went wrong. Please, refresh the page';
-        if (petsContainer) petsContainer.innerHTML = `<p class="error">${errorMsg}</p>`;
-        if (feedbackContainer) feedbackContainer.innerHTML = `<p class="error">${errorMsg}</p>`;
+        if (petsContainer)
+            petsContainer.innerHTML = `<p class="error">${errorMsg}</p>`;
+        if (feedbackContainer)
+            feedbackContainer.innerHTML = `<p class="error">${errorMsg}</p>`;
     }
 }
-
 // დანარჩენი ფუნქციები (renderPets, renderTestimonials და ა.შ.) უცვლელია
-function renderPets(pets: Animal[], container: HTMLElement): void {
-    if (!container || pets.length === 0) return;
+function renderPets(pets, container) {
+    if (!container || pets.length === 0)
+        return;
     const displayPets = pets.slice(currentPetIndex, currentPetIndex + 28);
     container.innerHTML = displayPets
         .filter(pet => !!pet)
@@ -117,10 +106,10 @@ function renderPets(pets: Animal[], container: HTMLElement): void {
             </div>
         `).join('');
 }
-
-function renderTestimonials(): void {
+function renderTestimonials() {
     const container = document.getElementById('cards-container');
-    if (!container || allFeedbacks.length === 0) return;
+    if (!container || allFeedbacks.length === 0)
+        return;
     const start = currentFeedbackPage * FEEDBACKS_PER_PAGE;
     const paginatedItems = allFeedbacks.slice(start, start + FEEDBACKS_PER_PAGE);
     container.innerHTML = paginatedItems.map(item => `
@@ -135,21 +124,22 @@ function renderTestimonials(): void {
     `).join('');
     updateDots();
 }
-
-function setupSliderControls(): void {
-    const nextPetBtn = document.getElementById('next-pet'); 
+function setupSliderControls() {
+    const nextPetBtn = document.getElementById('next-pet');
     const prevPetBtn = document.getElementById('prev-pet');
     nextPetBtn?.addEventListener('click', () => {
         currentPetIndex = (currentPetIndex + 1) % allPets.length;
         const petsContainer = document.getElementById('pets-container');
-        if (petsContainer) renderPets(allPets, petsContainer);
+        if (petsContainer)
+            renderPets(allPets, petsContainer);
     });
     prevPetBtn?.addEventListener('click', () => {
         currentPetIndex = (currentPetIndex - 1 + allPets.length) % allPets.length;
         const petsContainer = document.getElementById('pets-container');
-        if (petsContainer) renderPets(allPets, petsContainer);
+        if (petsContainer)
+            renderPets(allPets, petsContainer);
     });
-    const nextFeedbackBtn = document.getElementById('next-feedback'); 
+    const nextFeedbackBtn = document.getElementById('next-feedback');
     const prevFeedbackBtn = document.getElementById('prev-feedback');
     nextFeedbackBtn?.addEventListener('click', () => {
         const totalPages = Math.ceil(allFeedbacks.length / FEEDBACKS_PER_PAGE);
@@ -162,54 +152,53 @@ function setupSliderControls(): void {
         renderTestimonials();
     });
 }
-
-function updateDots(): void {
+function updateDots() {
     const dots = document.querySelectorAll('.pagination-dots .dot');
     dots.forEach((dot, index) => {
-        if (index === currentFeedbackPage) dot.classList.add('active');
-        else dot.classList.remove('active');
+        if (index === currentFeedbackPage)
+            dot.classList.add('active');
+        else
+            dot.classList.remove('active');
     });
 }
-
-function setupPagination(): void {
+function setupPagination() {
     const dots = document.querySelectorAll('.pagination-dots .dot');
     dots.forEach(dot => {
         dot.addEventListener('click', (e) => {
-            const target = e.currentTarget as HTMLElement;
+            const target = e.currentTarget;
             currentFeedbackPage = parseInt(target.dataset.index || '0');
             renderTestimonials();
         });
     });
 }
-
 document.addEventListener('DOMContentLoaded', loadLandingData);
-
 // ლოგინის ლოგიკა
-const userIcon = document.getElementById('user-icon') as HTMLImageElement;
-const userPopup = document.getElementById('user-popup') as HTMLElement;
-const unauthLinks = document.getElementById('unauthorized-links') as HTMLElement;
-const authInfo = document.getElementById('authorized-info') as HTMLElement;
-const displayName = document.getElementById('user-display-name') as HTMLElement;
-const displayEmail = document.getElementById('user-display-email') as HTMLElement;
-const logoutBtn = document.getElementById('logout-btn') as HTMLButtonElement;
-
-const checkAuthStatus = (): void => {
+const userIcon = document.getElementById('user-icon');
+const userPopup = document.getElementById('user-popup');
+const unauthLinks = document.getElementById('unauthorized-links');
+const authInfo = document.getElementById('authorized-info');
+const displayName = document.getElementById('user-display-name');
+const displayEmail = document.getElementById('user-display-email');
+const logoutBtn = document.getElementById('logout-btn');
+const checkAuthStatus = () => {
     const userName = localStorage.getItem('userName');
     const userEmail = localStorage.getItem('userEmail');
     if (userName && userName !== 'undefined') {
         unauthLinks.classList.add('hidden');
         authInfo.classList.remove('hidden');
         displayName.textContent = userName;
-        if (displayEmail && userEmail && userEmail !== 'undefined') displayEmail.textContent = userEmail;
-    } else {
+        if (displayEmail && userEmail && userEmail !== 'undefined')
+            displayEmail.textContent = userEmail;
+    }
+    else {
         unauthLinks.classList.remove('hidden');
         authInfo.classList.add('hidden');
     }
 };
-
-const validateToken = async (): Promise<void> => {
+const validateToken = async () => {
     const token = localStorage.getItem('userToken');
-    if (!token) return;
+    if (!token)
+        return;
     try {
         const response = await fetch('https://vsqsnqnxkh.execute-api.eu-central-1.amazonaws.com/prod/auth/profile', {
             method: 'GET',
@@ -218,50 +207,47 @@ const validateToken = async (): Promise<void> => {
         if (response.ok) {
             const result = await response.json();
             const nameFromServer = result.data.name;
-            const emailFromServer = result.data.email; 
+            const emailFromServer = result.data.email;
             if (nameFromServer) {
                 localStorage.setItem('userName', nameFromServer);
-                if (emailFromServer) localStorage.setItem('userEmail', emailFromServer);
+                if (emailFromServer)
+                    localStorage.setItem('userEmail', emailFromServer);
                 checkAuthStatus();
             }
-        } else if (response.status === 401) {
-            logoutBtn.click(); 
         }
-    } catch (error) {
+        else if (response.status === 401) {
+            logoutBtn.click();
+        }
+    }
+    catch (error) {
         console.error('Token validation failed:', error);
     }
 };
-
 userIcon.addEventListener('click', (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     userPopup.classList.toggle('hidden');
-    checkAuthStatus(); 
+    checkAuthStatus();
 });
-
 logoutBtn.addEventListener('click', () => {
     localStorage.removeItem('userName');
     localStorage.removeItem('userEmail');
     localStorage.removeItem('userToken');
-    localStorage.removeItem('isLoggedIn'); 
-    window.location.reload(); 
+    localStorage.removeItem('isLoggedIn');
+    window.location.reload();
 });
-
 document.addEventListener('click', (e) => {
-    const target = e.target as HTMLElement;
-    if (userPopup && !userPopup.contains(target) && target !== userIcon) userPopup.classList.add('hidden');
+    const target = e.target;
+    if (userPopup && !userPopup.contains(target) && target !== userIcon)
+        userPopup.classList.add('hidden');
 });
-
-checkAuthStatus(); 
+checkAuthStatus();
 validateToken();
-
 // --- Step 1 ვალიდაცია ---
-const nextBtn1 = document.getElementById('next1') as HTMLButtonElement;
-const otherAmountInput = document.getElementById('otherAmountInput') as HTMLInputElement;
-const petSelect = document.getElementById('pet-select') as HTMLSelectElement;
-const amountButtons = document.querySelectorAll('.amt') as NodeListOf<HTMLButtonElement>;
-
-let selectedAmount: string | null = null;
-
+const nextBtn1 = document.getElementById('next1');
+const otherAmountInput = document.getElementById('otherAmountInput');
+const petSelect = document.getElementById('pet-select');
+const amountButtons = document.querySelectorAll('.amt');
+let selectedAmount = null;
 const validateStep1 = () => {
     const isPetSelected = petSelect && petSelect.value !== "";
     const isAmountSelected = (selectedAmount !== null) || (otherAmountInput && otherAmountInput.value.trim() !== "");
@@ -270,24 +256,24 @@ const validateStep1 = () => {
             nextBtn1.disabled = false;
             nextBtn1.style.opacity = "1";
             nextBtn1.style.cursor = "pointer";
-        } else {
+        }
+        else {
             nextBtn1.disabled = true;
             nextBtn1.style.opacity = "0.5";
             nextBtn1.style.cursor = "not-allowed";
         }
     }
 };
-
 amountButtons.forEach(btn => {
     btn.addEventListener('click', () => {
         amountButtons.forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
         selectedAmount = btn.getAttribute('data-amt');
-        if (otherAmountInput) otherAmountInput.value = "";
+        if (otherAmountInput)
+            otherAmountInput.value = "";
         validateStep1();
     });
 });
-
 otherAmountInput?.addEventListener('input', () => {
     if (otherAmountInput.value.trim() !== "") {
         selectedAmount = null;
@@ -295,192 +281,153 @@ otherAmountInput?.addEventListener('input', () => {
     }
     validateStep1();
 });
-
 petSelect?.addEventListener('change', validateStep1);
-
 if (nextBtn1) {
     nextBtn1.disabled = true;
     nextBtn1.style.opacity = "0.5";
 }
-
-
-
 // სტეპ 2 ის დამატება 
-
-
-
-
 // --- Step 2-ის ვალიდაციის ლოგიკა ---
-
-
-
 // step 3
-
 // ვალიდაცია
 document.addEventListener("DOMContentLoaded", () => {
-  const cardNumberInput = document.getElementById("cardNumber") as HTMLInputElement | null;
-  const cvvInput = document.getElementById("cvvNumber") as HTMLInputElement | null;
-  const expMonthSelect = document.getElementById("expMonth") as HTMLSelectElement | null;
-  const expYearSelect = document.getElementById("expYear") as HTMLSelectElement | null;
-  const completeButton = document.getElementById("complete") as HTMLButtonElement | null;
-
-  if (
-    !cardNumberInput ||
-    !cvvInput ||
-    !expMonthSelect ||
-    !expYearSelect ||
-    !completeButton
-  ) {
-    return;
-  }
-
-  completeButton.disabled = true;
-
-  const getCardDigits = (): string => {
-    return cardNumberInput.value.replace(/\D/g, "");
-  };
-
-  const validateCardNumber = (): boolean => {
-    return /^\d{16}$/.test(getCardDigits());
-  };
-
-  const validateCVV = (): boolean => {
-    return /^\d{3}$/.test(cvvInput.value.trim());
-  };
-
-  const validateExpirationDate = (): boolean => {
-    const month = expMonthSelect.value;
-    const year = expYearSelect.value;
-
-    if (!month || !year) return false;
-    if (!/^(0[1-9]|1[0-2])$/.test(month)) return false;
-    if (!/^\d{2}$/.test(year)) return false;
-
-    const fullYear = 2000 + Number(year);
-
-    
-    const expirationDate = new Date(fullYear, Number(month), 0, 23, 59, 59, 999);
-    const now = new Date();
-
-    return expirationDate.getTime() > now.getTime();
-  };
-
-  const validateStep3 = (): boolean => {
-    return validateCardNumber() && validateCVV() && validateExpirationDate();
-  };
-
-  const updateCompleteButtonState = (): void => {
-    completeButton.disabled = !validateStep3();
-  };
-
-  const showError = (element: HTMLElement, message: string): void => {
-    element.style.borderColor = "#e74c3c";
-
-    const parent = element.parentElement;
-    if (!parent) return;
-
-    let errorEl = parent.querySelector(".validation-error") as HTMLDivElement | null;
-
-    if (!errorEl) {
-      errorEl = document.createElement("div");
-      errorEl.className = "validation-error";
-      errorEl.style.color = "#e74c3c";
-      errorEl.style.fontSize = "12px";
-      errorEl.style.marginTop = "6px";
-      parent.appendChild(errorEl);
+    const cardNumberInput = document.getElementById("cardNumber");
+    const cvvInput = document.getElementById("cvvNumber");
+    const expMonthSelect = document.getElementById("expMonth");
+    const expYearSelect = document.getElementById("expYear");
+    const completeButton = document.getElementById("complete");
+    if (!cardNumberInput ||
+        !cvvInput ||
+        !expMonthSelect ||
+        !expYearSelect ||
+        !completeButton) {
+        return;
     }
-
-    errorEl.textContent = message;
-  };
-
-  const clearError = (element: HTMLElement): void => {
-    element.style.borderColor = "";
-
-    const parent = element.parentElement;
-    if (!parent) return;
-
-    const errorEl = parent.querySelector(".validation-error");
-    if (errorEl) {
-      errorEl.remove();
-    }
-  };
-
-  const validateCardNumberWithError = (): void => {
-    if (cardNumberInput.value.trim() === "") {
-      clearError(cardNumberInput);
-      return;
-    }
-
-    if (!validateCardNumber()) {
-      showError(cardNumberInput, "Card number must be exactly 16 digits.");
-    } else {
-      clearError(cardNumberInput);
-    }
-  };
-
-  const validateCVVWithError = (): void => {
-    if (cvvInput.value.trim() === "") {
-      clearError(cvvInput);
-      return;
-    }
-
-    if (!validateCVV()) {
-      showError(cvvInput, "CVV must be exactly 3 digits.");
-    } else {
-      clearError(cvvInput);
-    }
-  };
-
-  const validateExpirationWithError = (): void => {
-    if (!expMonthSelect.value || !expYearSelect.value) {
-      clearError(expYearSelect);
-      expMonthSelect.style.borderColor = "";
-      expYearSelect.style.borderColor = "";
-      return;
-    }
-
-    if (!validateExpirationDate()) {
-      expMonthSelect.style.borderColor = "#e74c3c";
-      expYearSelect.style.borderColor = "#e74c3c";
-      showError(expYearSelect, "Expiration date must be a valid future date.");
-    } else {
-      expMonthSelect.style.borderColor = "";
-      expYearSelect.style.borderColor = "";
-      clearError(expYearSelect);
-    }
-  };
-
-  
-  cardNumberInput.addEventListener("input", () => {
-    const digits = cardNumberInput.value.replace(/\D/g, "").slice(0, 16);
-    cardNumberInput.value = digits.replace(/(.{4})/g, "$1 ").trim();
-
-    validateCardNumberWithError();
+    completeButton.disabled = true;
+    const getCardDigits = () => {
+        return cardNumberInput.value.replace(/\D/g, "");
+    };
+    const validateCardNumber = () => {
+        return /^\d{16}$/.test(getCardDigits());
+    };
+    const validateCVV = () => {
+        return /^\d{3}$/.test(cvvInput.value.trim());
+    };
+    const validateExpirationDate = () => {
+        const month = expMonthSelect.value;
+        const year = expYearSelect.value;
+        if (!month || !year)
+            return false;
+        if (!/^(0[1-9]|1[0-2])$/.test(month))
+            return false;
+        if (!/^\d{2}$/.test(year))
+            return false;
+        const fullYear = 2000 + Number(year);
+        // არჩეული თვის ბოლო დღე
+        const expirationDate = new Date(fullYear, Number(month), 0, 23, 59, 59, 999);
+        const now = new Date();
+        return expirationDate.getTime() > now.getTime();
+    };
+    const validateStep3 = () => {
+        return validateCardNumber() && validateCVV() && validateExpirationDate();
+    };
+    const updateCompleteButtonState = () => {
+        completeButton.disabled = !validateStep3();
+    };
+    const showError = (element, message) => {
+        element.style.borderColor = "#e74c3c";
+        const parent = element.parentElement;
+        if (!parent)
+            return;
+        let errorEl = parent.querySelector(".validation-error");
+        if (!errorEl) {
+            errorEl = document.createElement("div");
+            errorEl.className = "validation-error";
+            errorEl.style.color = "#e74c3c";
+            errorEl.style.fontSize = "12px";
+            errorEl.style.marginTop = "6px";
+            parent.appendChild(errorEl);
+        }
+        errorEl.textContent = message;
+    };
+    const clearError = (element) => {
+        element.style.borderColor = "";
+        const parent = element.parentElement;
+        if (!parent)
+            return;
+        const errorEl = parent.querySelector(".validation-error");
+        if (errorEl) {
+            errorEl.remove();
+        }
+    };
+    const validateCardNumberWithError = () => {
+        if (cardNumberInput.value.trim() === "") {
+            clearError(cardNumberInput);
+            return;
+        }
+        if (!validateCardNumber()) {
+            showError(cardNumberInput, "Card number must be exactly 16 digits.");
+        }
+        else {
+            clearError(cardNumberInput);
+        }
+    };
+    const validateCVVWithError = () => {
+        if (cvvInput.value.trim() === "") {
+            clearError(cvvInput);
+            return;
+        }
+        if (!validateCVV()) {
+            showError(cvvInput, "CVV must be exactly 3 digits.");
+        }
+        else {
+            clearError(cvvInput);
+        }
+    };
+    const validateExpirationWithError = () => {
+        if (!expMonthSelect.value || !expYearSelect.value) {
+            clearError(expYearSelect);
+            expMonthSelect.style.borderColor = "";
+            expYearSelect.style.borderColor = "";
+            return;
+        }
+        if (!validateExpirationDate()) {
+            expMonthSelect.style.borderColor = "#e74c3c";
+            expYearSelect.style.borderColor = "#e74c3c";
+            showError(expYearSelect, "Expiration date must be a valid future date.");
+        }
+        else {
+            expMonthSelect.style.borderColor = "";
+            expYearSelect.style.borderColor = "";
+            clearError(expYearSelect);
+        }
+    };
+    // Card number: მხოლოდ ციფრები + მაქს 16
+    cardNumberInput.addEventListener("input", () => {
+        const digits = cardNumberInput.value.replace(/\D/g, "").slice(0, 16);
+        cardNumberInput.value = digits.replace(/(.{4})/g, "$1 ").trim();
+        validateCardNumberWithError();
+        updateCompleteButtonState();
+    });
+    // CVV: მხოლოდ ციფრები + მაქს 3
+    cvvInput.addEventListener("input", () => {
+        cvvInput.value = cvvInput.value.replace(/\D/g, "").slice(0, 3);
+        validateCVVWithError();
+        updateCompleteButtonState();
+    });
+    expMonthSelect.addEventListener("change", () => {
+        validateExpirationWithError();
+        updateCompleteButtonState();
+    });
+    expYearSelect.addEventListener("change", () => {
+        validateExpirationWithError();
+        updateCompleteButtonState();
+    });
+    cardNumberInput.addEventListener("blur", validateCardNumberWithError);
+    cvvInput.addEventListener("blur", validateCVVWithError);
+    expMonthSelect.addEventListener("blur", validateExpirationWithError);
+    expYearSelect.addEventListener("blur", validateExpirationWithError);
     updateCompleteButtonState();
-  });
-
-  
-  cvvInput.addEventListener("input", () => {
-    cvvInput.value = cvvInput.value.replace(/\D/g, "").slice(0, 3);
-
-    validateCVVWithError();
-    updateCompleteButtonState();
-  });
-
-  expMonthSelect.addEventListener("change", () => {
-    validateExpirationWithError();
-    updateCompleteButtonState();
-  });
-
-  expYearSelect.addEventListener("change", () => {
-    validateExpirationWithError();
-    updateCompleteButtonState();
-  });
-
-  cardNumberInput.addEventListener("blur", validateCardNumberWithError);
-  cvvInput.addEventListener("blur", validateCVVWithError);
-  expMonthSelect.addEventListener("blur", validateExpirationWithError);
-  expYearSelect.addEventListener("blur", validateExpirationWithError);
-
-  updateCompleteButtonState();
 });
+export {};
+//# sourceMappingURL=index.js.map

@@ -1,9 +1,9 @@
 # იგნორირება შიდა ფოლდერში არსებული ნაგვის
 online-zoo/node_modules/
-online-zoo/dist/
+
 
 # ზოგადი იგნორირება
 .vscode/
-*.js.map
-*.d.ts.map
+
+
 .DS_Store
