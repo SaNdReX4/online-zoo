@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Zoo - Sign In</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="login-container">
+        <form id="login-form" class="auth-form" novalidate>
+            <h1>Sign In</h1>
+            
+            <div class="input-group">
+                <label for="login-user">Login</label>
+                <input type="text" id="login-user" placeholder="Enter your login">
+                <span class="error-msg" id="login-error"></span>
+            </div>
+
+            <div class="input-group">
+                <label for="login-pass">Password</label>
+                <input type="password" id="login-pass" placeholder="Enter your password">
+                <span class="error-msg" id="pass-error"></span>
+            </div>
+
+            <button type="submit" id="login-btn" disabled>Sign In</button>
+            
+            <p class="switch-auth">Don't have an account? <a href="../registration/index.html">Register</a></p>
+        </form>
+    </div>
+
+    <script type="module" src="../../dist/login.js" type="module" ></script>
+</body>
+</html>

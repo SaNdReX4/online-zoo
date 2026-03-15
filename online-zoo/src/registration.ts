@@ -63,9 +63,9 @@ const checkFormValidity = (): void => {
 
 
 [
-    { input: nameInput, err: 'name-error', reg: REGEX.NAME, msg: 'Min 3 letters required' },
-    { input: loginInput, err: 'login-error', reg: REGEX.LOGIN, msg: 'Start with letter, min 3 chars' },
-    { input: passInput, err: 'pass-error', reg: REGEX.PASSWORD, msg: 'Min 6 chars + 1 special char' }
+    { input: nameInput, err: 'name-error', reg: REGEX.NAME, msg: 'Min 3 letters required (only english)' },
+    { input: loginInput, err: 'login-error', reg: REGEX.LOGIN, msg: 'Start with letter, min 3 chars (only english)' },
+    { input: passInput, err: 'pass-error', reg: REGEX.PASSWORD, msg: 'Min 6 chars + 1 special char(!@#$%^&*) ' }
 ].forEach(item => {
     item.input.addEventListener('blur', () => validateField(item.input, item.err, item.reg, item.msg));
     item.input.addEventListener('focus', () => {
