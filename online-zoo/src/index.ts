@@ -162,3 +162,59 @@ function setupPagination(): void {
 }
 
 document.addEventListener('DOMContentLoaded', loadLandingData);
+
+
+// ლოგინის ფუნქცია 
+
+
+
+const userIcon = document.getElementById('user-icon') as HTMLImageElement;
+const userPopup = document.getElementById('user-popup') as HTMLElement;
+const unauthLinks = document.getElementById('unauthorized-links') as HTMLElement;
+const authInfo = document.getElementById('authorized-info') as HTMLElement;
+const displayName = document.getElementById('user-display-name') as HTMLElement;
+const logoutBtn = document.getElementById('logout-btn') as HTMLButtonElement;
+
+const checkAuthStatus = (): void => {
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    const userName = localStorage.getItem('userName');
+
+    if (isLoggedIn === 'true' && userName) {
+        
+        unauthLinks.classList.add('hidden');
+        unauthLinks.style.display = 'none'; 
+        
+        authInfo.classList.remove('hidden');
+        authInfo.style.display = 'block'; 
+        
+        displayName.textContent = userName;
+    } else {
+        
+        unauthLinks.classList.remove('hidden');
+        unauthLinks.style.display = 'block';
+        
+        authInfo.classList.add('hidden');
+        authInfo.style.display = 'none';
+    }
+};
+
+userIcon.addEventListener('click', (e) => {
+    e.stopPropagation(); 
+    userPopup.classList.toggle('hidden');
+    checkAuthStatus(); 
+});
+
+logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('userName');
+    window.location.reload(); 
+});
+
+document.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    if (userPopup && !userPopup.contains(target) && target !== userIcon) {
+        userPopup.classList.add('hidden');
+    }
+});
+
+checkAuthStatus();
