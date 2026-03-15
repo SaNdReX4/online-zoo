@@ -47,6 +47,13 @@ async function loadLandingData(): Promise<void> {
     }
 }
 
+
+
+
+
+// პოპ უპ ის ფუნქცია ცხოველების წამოღება
+
+
 function renderPets(pets: Animal[], container: HTMLElement): void {
     if (!container || pets.length === 0) return;
     

@@ -2317,6 +2317,52 @@ footer{
 .dot.active { background: #00A092; }
 
 
+.donation-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+
+.row-label {
+    background: #00A092;
+    color: white;
+    padding: 12px 0;
+    width: 160px; 
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 2px;
+    flex-shrink: 0; 
+}
+
+/* ინფუტების გასწორება */
+.donation-row .input {
+    flex-grow: 1;
+    margin-top: 0;
+}
+
+/* ჩამოსაშლელი მენიუს (select) სპეციფიკური სტილი */
+select.input {
+    cursor: pointer;
+    appearance: none; 
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+}
+
+/* Checkbox-ის სტილი */
+.recurring-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+
 
 
 /* PROMO POP UP  */
@@ -2330,10 +2376,10 @@ footer{
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.75);
-    display: none; /* თავიდან დამალულია */
+    display: none; 
     align-items: center;
     justify-content: center;
-    z-index: 10000; /* ყველაფერზე ზემოთ */
+    z-index: 10000; 
     backdrop-filter: blur(5px);
 }
 
@@ -2500,6 +2546,17 @@ footer{
 }
 
 #user-display-name {
+    color: #f58021;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
+    padding: 10px 10px 5px 10px;
+    margin: 0;
+    font-size: 15px;
+    text-transform: capitalize;
+}
+
+
+#user-display-email {
     color: #f58021;
     font-family: "Montserrat", sans-serif;
     font-weight: 700;

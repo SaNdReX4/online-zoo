@@ -544,29 +544,48 @@
             </div>
 
             <div class="step active" data-step="1">
-                <div class="section-head">Donation Information:</div>
-                <div class="content">
-                    <div class="label"><span class="req">*</span>Choose your donation amount:</div>
-                    <div class="amount-grid">
-                        <button class="amt" type="button" data-amt="10">$10</button>
-                        <button class="amt" type="button" data-amt="20">$20</button>
-                        <button class="amt" type="button" data-amt="30">$30</button>
-                        <button class="amt" type="button" data-amt="50">$50</button>
-                        <button class="amt" type="button" data-amt="80">$80</button>
-                        <button class="amt" type="button" data-amt="100">$100</button>
-                    </div>
-                    <div class="amount-row">
-                        <button class="btn-secondary" type="button" id="otherAmountBtn">OTHER</button>
-                        <input class="input" id="otherAmountInput" type="number" placeholder="Amount">
-                    </div>
-                    <div class="footer">
-                        <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
-                        <div class="nav">
-                            <button class="btn-primary" type="button" id="next1">NEXT</button>
-                        </div>
-                    </div>
-                </div>
+    <div class="section-head">Donation Information:</div>
+    <div class="content">
+        <div class="label"><span class="req">*</span>Choose your donation amount:</div>
+        
+        <div class="amount-grid">
+            <button class="amt" type="button" data-amt="10">$10</button>
+            <button class="amt" type="button" data-amt="20">$20</button>
+            <button class="amt" type="button" data-amt="30">$30</button>
+            <button class="amt" type="button" data-amt="50">$50</button>
+            <button class="amt" type="button" data-amt="80">$80</button>
+            <button class="amt" type="button" data-amt="100">$100</button>
+        </div>
+
+        <div class="donation-row">
+            <div class="row-label">OTHER AMOUNT</div>
+            <input class="input" id="otherAmountInput" type="number" placeholder="Amount">
+        </div>
+
+        <div class="donation-row">
+            <div class="row-label">FOR SPECIAL PET</div>
+            <select class="input" id="pet-select">
+                <option value="" disabled selected>Choose your favourite</option>
+                </select>
+        </div>
+
+        <div class="recurring-check">
+            <input type="checkbox" id="recurring">
+            <label for="recurring">Make this a monthly recurring gift</label>
+        </div>
+
+        <div class="footer">
+            <div class="dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
             </div>
+            <div class="nav">
+                <button class="btn-primary" type="button" id="next1">NEXT</button>
+            </div>
+        </div>
+    </div>
+</div>
 
             <div class="step" data-step="2">
                 <div class="section-head">Billing Information:</div>
