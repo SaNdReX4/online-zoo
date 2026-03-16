@@ -86,7 +86,6 @@ async function loadLandingData(): Promise<void> {
     }
 }
 
-// დანარჩენი ფუნქციები (renderPets, renderTestimonials და ა.შ.) უცვლელია
 function renderPets(pets: Animal[], container: HTMLElement): void {
     if (!container || pets.length === 0) return;
     const displayPets = pets.slice(currentPetIndex, currentPetIndex + 28);
@@ -412,7 +411,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const amountValue = (typeof selectedAmount !== 'undefined' ? selectedAmount : null) || otherAmount?.value || "0";
 
         if (!nameInput?.value || !emailInput?.value || !petSelect?.value || amountValue === "0") {
-            alert("გთხოვთ შეავსოთ ყველა წინა სტეპის მონაცემი (სახელი, მეილი, ცხოველი, თანხა)");
+            alert("Please complete all previous steps (name, email, pet, amount).");
             return;
         }
 
@@ -438,7 +437,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
             if (response.ok) {
-                alert("გმადლობთ! დონაცია წარმატებით განხორციელდა.");
+                alert("Thank you! Your donation was successfully completed.");
                 
                 const saveCheckbox = document.getElementById("saveCardInfo") as HTMLInputElement | null;
                 if (saveCheckbox?.checked) {
@@ -452,10 +451,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.location.reload();
             } else {
                 const errorData = await response.json();
-                alert(`შეცდომა: ${errorData.message || "ვერ მოხერხდა დონაციის გაგზავნა"}`);
+                alert(`Error: ${errorData.message || "Failed to send donation"}`);
             }
         } catch (error) {
-            alert("სერვერთან კავშირი ვერ დამყარდა (CORS ან ინტერნეტი).");
+            alert("Failed to establish a connection with the server (CORS or internet error).");
         } finally {
             completeButton.innerText = "COMPLETE";
             updateCompleteButtonState();
