@@ -74,7 +74,6 @@ async function loadLandingData() {
             feedbackContainer.innerHTML = `<p class="error">${errorMsg}</p>`;
     }
 }
-// დანარჩენი ფუნქციები (renderPets, renderTestimonials და ა.შ.) უცვლელია
 function renderPets(pets, container) {
     if (!container || pets.length === 0)
         return;
@@ -303,7 +302,6 @@ emailInput2?.addEventListener('input', validateStep2);
 // step 3
 // ვალიდაცია
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. ელემენტების სელექტორები
     const cardNumberInput = document.getElementById("cardNumber");
     const cvvInput = document.getElementById("cvvNumber");
     const expMonthSelect = document.getElementById("expMonth");
@@ -312,7 +310,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!cardNumberInput || !cvvInput || !expMonthSelect || !expYearSelect || !completeButton)
         return;
     completeButton.disabled = true;
-    // --- შენი ვალიდაციის ლოგიკა (უცვლელად) ---
     const getCardDigits = () => cardNumberInput.value.replace(/\D/g, "");
     const validateCardNumber = () => /^\d{16}$/.test(getCardDigits());
     const validateCVV = () => /^\d{3}$/.test(cvvInput.value.trim());
@@ -372,10 +369,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const emailInput = document.getElementById("email");
         const petSelect = document.getElementById("pet-select");
         const otherAmount = document.getElementById("otherAmountInput");
-        // @ts-ignore (selectedAmount სხვა ფაილიდან რომ დაინახოს)
         const amountValue = (typeof selectedAmount !== 'undefined' ? selectedAmount : null) || otherAmount?.value || "0";
         if (!nameInput?.value || !emailInput?.value || !petSelect?.value || amountValue === "0") {
-            alert("გთხოვთ შეავსოთ ყველა წინა სტეპის მონაცემი (სახელი, მეილი, ცხოველი, თანხა)");
+            alert("Please complete all previous steps (name, email, pet, amount).");
             return;
         }
         const donationBody = {
@@ -393,12 +389,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json' // ეს აუცილებელია ამ API-სთვის
+                    'Accept': 'application/json'
                 },
                 body: JSON.stringify(donationBody)
             });
             if (response.ok) {
-                alert("გმადლობთ! დონაცია წარმატებით განხორციელდა.");
+                alert("Thank you! Your donation was successfully completed.");
                 const saveCheckbox = document.getElementById("saveCardInfo");
                 if (saveCheckbox?.checked) {
                     const savedCards = JSON.parse(localStorage.getItem("savedCards") || "[]");
@@ -412,11 +408,11 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             else {
                 const errorData = await response.json();
-                alert(`შეცდომა: ${errorData.message || "ვერ მოხერხდა დონაციის გაგზავნა"}`);
+                alert(`Error: ${errorData.message || "Failed to send donation"}`);
             }
         }
         catch (error) {
-            alert("სერვერთან კავშირი ვერ დამყარდა (CORS ან ინტერნეტი).");
+            alert("Failed to establish a connection with the server (CORS or internet error).");
         }
         finally {
             completeButton.innerText = "COMPLETE";
