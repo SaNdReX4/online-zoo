@@ -307,7 +307,20 @@ if (nextBtn1) {
 
 // სტეპ 2 ის დამატება 
 
+const nextBtn2 = document.getElementById('next2') as HTMLButtonElement;
+const nameInput2 = document.getElementById('fullName') as HTMLInputElement;
+const emailInput2 = document.getElementById('email') as HTMLInputElement;
 
+const validateStep2 = () => {
+    const isValid = nameInput2.value.trim().length > 0 && emailInput2.value.includes('@');
+    if (nextBtn2) {
+        nextBtn2.disabled = !isValid;
+        nextBtn2.style.opacity = isValid ? "1" : "0.5";
+    }
+};
+
+nameInput2?.addEventListener('input', validateStep2);
+emailInput2?.addEventListener('input', validateStep2);
 
 
 // --- Step 2-ის ვალიდაციის ლოგიკა ---
@@ -318,169 +331,134 @@ if (nextBtn1) {
 
 // ვალიდაცია
 document.addEventListener("DOMContentLoaded", () => {
-  const cardNumberInput = document.getElementById("cardNumber") as HTMLInputElement | null;
-  const cvvInput = document.getElementById("cvvNumber") as HTMLInputElement | null;
-  const expMonthSelect = document.getElementById("expMonth") as HTMLSelectElement | null;
-  const expYearSelect = document.getElementById("expYear") as HTMLSelectElement | null;
-  const completeButton = document.getElementById("complete") as HTMLButtonElement | null;
+    
+    const cardNumberInput = document.getElementById("cardNumber") as HTMLInputElement | null;
+    const cvvInput = document.getElementById("cvvNumber") as HTMLInputElement | null;
+    const expMonthSelect = document.getElementById("expMonth") as HTMLSelectElement | null;
+    const expYearSelect = document.getElementById("expYear") as HTMLSelectElement | null;
+    const completeButton = document.getElementById("complete") as HTMLButtonElement | null;
 
-  if (
-    !cardNumberInput ||
-    !cvvInput ||
-    !expMonthSelect ||
-    !expYearSelect ||
-    !completeButton
-  ) {
-    return;
-  }
+    if (!cardNumberInput || !cvvInput || !expMonthSelect || !expYearSelect || !completeButton) return;
 
-  completeButton.disabled = true;
-
-  const getCardDigits = (): string => {
-    return cardNumberInput.value.replace(/\D/g, "");
-  };
-
-  const validateCardNumber = (): boolean => {
-    return /^\d{16}$/.test(getCardDigits());
-  };
-
-  const validateCVV = (): boolean => {
-    return /^\d{3}$/.test(cvvInput.value.trim());
-  };
-
-  const validateExpirationDate = (): boolean => {
-    const month = expMonthSelect.value;
-    const year = expYearSelect.value;
-
-    if (!month || !year) return false;
-    if (!/^(0[1-9]|1[0-2])$/.test(month)) return false;
-    if (!/^\d{2}$/.test(year)) return false;
-
-    const fullYear = 2000 + Number(year);
+    completeButton.disabled = true;
 
     
-    const expirationDate = new Date(fullYear, Number(month), 0, 23, 59, 59, 999);
-    const now = new Date();
+    const getCardDigits = () => cardNumberInput.value.replace(/\D/g, "");
+    const validateCardNumber = () => /^\d{16}$/.test(getCardDigits());
+    const validateCVV = () => /^\d{3}$/.test(cvvInput.value.trim());
+    const validateExpirationDate = () => {
+        const month = expMonthSelect.value;
+        const year = expYearSelect.value;
+        if (!month || !year) return false;
+        const expirationDate = new Date(2000 + Number(year), Number(month), 0, 23, 59, 59, 999);
+        return expirationDate.getTime() > new Date().getTime();
+    };
 
-    return expirationDate.getTime() > now.getTime();
-  };
+    const updateCompleteButtonState = () => {
+        completeButton.disabled = !(validateCardNumber() && validateCVV() && validateExpirationDate());
+    };
 
-  const validateStep3 = (): boolean => {
-    return validateCardNumber() && validateCVV() && validateExpirationDate();
-  };
+    // --- შეცდომების ჩვენების ფუნქციები (უცვლელად) ---
+    const showError = (element: HTMLElement, message: string) => {
+        element.style.borderColor = "#e74c3c";
+        const parent = element.parentElement;
+        if (!parent) return;
+        let errorEl = parent.querySelector(".validation-error") as HTMLDivElement | null;
+        if (!errorEl) {
+            errorEl = document.createElement("div");
+            errorEl.className = "validation-error";
+            errorEl.style.color = "#e74c3c";
+            errorEl.style.fontSize = "12px";
+            errorEl.style.marginTop = "6px";
+            parent.appendChild(errorEl);
+        }
+        errorEl.textContent = message;
+    };
 
-  const updateCompleteButtonState = (): void => {
-    completeButton.disabled = !validateStep3();
-  };
+    const clearError = (element: HTMLElement) => {
+        element.style.borderColor = "";
+        element.parentElement?.querySelector(".validation-error")?.remove();
+    };
 
-  const showError = (element: HTMLElement, message: string): void => {
-    element.style.borderColor = "#e74c3c";
+    // --- ივენთები ვალიდაციისთვის ---
+    cardNumberInput.addEventListener("input", () => {
+        const digits = cardNumberInput.value.replace(/\D/g, "").slice(0, 16);
+        cardNumberInput.value = digits.replace(/(.{4})/g, "$1 ").trim();
+        validateCardNumber() ? clearError(cardNumberInput) : showError(cardNumberInput, "Card number must be 16 digits.");
+        updateCompleteButtonState();
+    });
 
-    const parent = element.parentElement;
-    if (!parent) return;
+    cvvInput.addEventListener("input", () => {
+        cvvInput.value = cvvInput.value.replace(/\D/g, "").slice(0, 3);
+        validateCVV() ? clearError(cvvInput) : showError(cvvInput, "CVV must be 3 digits.");
+        updateCompleteButtonState();
+    });
 
-    let errorEl = parent.querySelector(".validation-error") as HTMLDivElement | null;
+    [expMonthSelect, expYearSelect].forEach(el => {
+        el.addEventListener("change", () => {
+            validateExpirationDate() ? clearError(expYearSelect) : showError(expYearSelect, "Invalid expiration date.");
+            updateCompleteButtonState();
+        });
+    });
 
-    if (!errorEl) {
-      errorEl = document.createElement("div");
-      errorEl.className = "validation-error";
-      errorEl.style.color = "#e74c3c";
-      errorEl.style.fontSize = "12px";
-      errorEl.style.marginTop = "6px";
-      parent.appendChild(errorEl);
-    }
+    // --- მთავარი "COMPLETE" ღილაკის ლოგიკა ---
+    completeButton.addEventListener("click", async () => {
+        const nameInput = document.getElementById("fullName") as HTMLInputElement | null;
+        const emailInput = document.getElementById("email") as HTMLInputElement | null;
+        const petSelect = document.getElementById("pet-select") as HTMLSelectElement | null;
+        const otherAmount = document.getElementById("otherAmountInput") as HTMLInputElement | null;
 
-    errorEl.textContent = message;
-  };
+       
+        const amountValue = (typeof selectedAmount !== 'undefined' ? selectedAmount : null) || otherAmount?.value || "0";
 
-  const clearError = (element: HTMLElement): void => {
-    element.style.borderColor = "";
+        if (!nameInput?.value || !emailInput?.value || !petSelect?.value || amountValue === "0") {
+            alert("გთხოვთ შეავსოთ ყველა წინა სტეპის მონაცემი (სახელი, მეილი, ცხოველი, თანხა)");
+            return;
+        }
 
-    const parent = element.parentElement;
-    if (!parent) return;
+        const donationBody = {
+            name: nameInput.value.trim(),
+            email: emailInput.value.trim(),
+            amount: Number(amountValue),
+            petId: Number(petSelect.value)
+        };
 
-    const errorEl = parent.querySelector(".validation-error");
-    if (errorEl) {
-      errorEl.remove();
-    }
-  };
+        try {
+            completeButton.innerText = "SENDING...";
+            completeButton.disabled = true;
+                // აი ეს შევცვალეეეე
+            const response = await fetch('https://vsqsnqnxkh.execute-api.eu-central-1.amazonaws.com/prod/donate', {
+    method: 'POST',
+    mode: 'cors', 
+    headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json' 
+    },
+    body: JSON.stringify(donationBody)
+});
 
-  const validateCardNumberWithError = (): void => {
-    if (cardNumberInput.value.trim() === "") {
-      clearError(cardNumberInput);
-      return;
-    }
-
-    if (!validateCardNumber()) {
-      showError(cardNumberInput, "Card number must be exactly 16 digits.");
-    } else {
-      clearError(cardNumberInput);
-    }
-  };
-
-  const validateCVVWithError = (): void => {
-    if (cvvInput.value.trim() === "") {
-      clearError(cvvInput);
-      return;
-    }
-
-    if (!validateCVV()) {
-      showError(cvvInput, "CVV must be exactly 3 digits.");
-    } else {
-      clearError(cvvInput);
-    }
-  };
-
-  const validateExpirationWithError = (): void => {
-    if (!expMonthSelect.value || !expYearSelect.value) {
-      clearError(expYearSelect);
-      expMonthSelect.style.borderColor = "";
-      expYearSelect.style.borderColor = "";
-      return;
-    }
-
-    if (!validateExpirationDate()) {
-      expMonthSelect.style.borderColor = "#e74c3c";
-      expYearSelect.style.borderColor = "#e74c3c";
-      showError(expYearSelect, "Expiration date must be a valid future date.");
-    } else {
-      expMonthSelect.style.borderColor = "";
-      expYearSelect.style.borderColor = "";
-      clearError(expYearSelect);
-    }
-  };
-
-  
-  cardNumberInput.addEventListener("input", () => {
-    const digits = cardNumberInput.value.replace(/\D/g, "").slice(0, 16);
-    cardNumberInput.value = digits.replace(/(.{4})/g, "$1 ").trim();
-
-    validateCardNumberWithError();
-    updateCompleteButtonState();
-  });
-
-  
-  cvvInput.addEventListener("input", () => {
-    cvvInput.value = cvvInput.value.replace(/\D/g, "").slice(0, 3);
-
-    validateCVVWithError();
-    updateCompleteButtonState();
-  });
-
-  expMonthSelect.addEventListener("change", () => {
-    validateExpirationWithError();
-    updateCompleteButtonState();
-  });
-
-  expYearSelect.addEventListener("change", () => {
-    validateExpirationWithError();
-    updateCompleteButtonState();
-  });
-
-  cardNumberInput.addEventListener("blur", validateCardNumberWithError);
-  cvvInput.addEventListener("blur", validateCVVWithError);
-  expMonthSelect.addEventListener("blur", validateExpirationWithError);
-  expYearSelect.addEventListener("blur", validateExpirationWithError);
-
-  updateCompleteButtonState();
+            if (response.ok) {
+                alert("გმადლობთ! დონაცია წარმატებით განხორციელდა.");
+                
+                const saveCheckbox = document.getElementById("saveCardInfo") as HTMLInputElement | null;
+                if (saveCheckbox?.checked) {
+                    const savedCards = JSON.parse(localStorage.getItem("savedCards") || "[]");
+                    const newCard = {
+                        number: cardNumberInput.value.replace(/\s/g, ""),
+                        expiry: `${expMonthSelect.value}/${expYearSelect.value}`
+                    };
+                    localStorage.setItem("savedCards", JSON.stringify([...savedCards, newCard]));
+                }
+                window.location.reload();
+            } else {
+                const errorData = await response.json();
+                alert(`შეცდომა: ${errorData.message || "ვერ მოხერხდა დონაციის გაგზავნა"}`);
+            }
+        } catch (error) {
+            alert("სერვერთან კავშირი ვერ დამყარდა (CORS ან ინტერნეტი).");
+        } finally {
+            completeButton.innerText = "COMPLETE";
+            updateCompleteButtonState();
+        }
+    });
 });

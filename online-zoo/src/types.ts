@@ -36,6 +36,13 @@ export interface User {
     password?: string; 
 }
 
+export interface DonationData {
+    name: string;
+    email: string;
+    amount: number;
+    petId: number;
+}
+
 // ლოგინის პასუხისთვის
 export interface AuthResponse {
     token: string;

@@ -30,6 +30,12 @@ export interface User {
     login: string;
     password?: string;
 }
+export interface DonationData {
+    name: string;
+    email: string;
+    amount: number;
+    petId: number;
+}
 export interface AuthResponse {
     token: string;
     user: User;
