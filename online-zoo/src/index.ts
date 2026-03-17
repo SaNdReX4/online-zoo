@@ -425,10 +425,10 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             completeButton.innerText = "SENDING...";
             completeButton.disabled = true;
+            console.log(2)
                 // აი ეს შევცვალეეეე
-            const response = await fetch('https://vsqsnqnxkh.execute-api.eu-central-1.amazonaws.com/prod/donate', {
+            const response = await fetch('https://vsqsnqnxkh.execute-api.eu-central-1.amazonaws.com/prod/donations', {
     method: 'POST',
-    mode: 'cors', 
     headers: { 
         'Content-Type': 'application/json',
         'Accept': 'application/json' 
