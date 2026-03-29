@@ -1,4 +1,5 @@
 import { initI18n } from './i18n.js';
+import './zoo-video.js';
 document.addEventListener('DOMContentLoaded', () => {
     console.log("App Started!");
     initI18n(); // ენების ინიციალიზაცია

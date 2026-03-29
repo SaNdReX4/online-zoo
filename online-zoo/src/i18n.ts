@@ -21,19 +21,19 @@ export const initI18n = () => {
         });
     };
 
-    // 1. გახსნა/დახურვა
+    //  გახსნა/დახურვა
     switcher?.addEventListener('click', (e) => {
-        console.log("Switcher clicked!"); // ეს უნდა გამოჩნდეს კონსოლში
+        console.log("Switcher clicked!"); 
         e.stopPropagation();
         dropdown?.classList.toggle('active');
     });
 
-    // 2. გვერდზე დაჭერისას დახურვა
+    //  გვერდზე დაჭერისას დახურვა
     document.addEventListener('click', () => {
         dropdown?.classList.remove('active');
     });
 
-    // 3. ენის არჩევისას
+    // ენის არჩევისას
     options.forEach(option => {
         option.addEventListener('click', (e) => {
             e.stopPropagation(); // რომ მშობელმა switcher-მა თავიდან არ გახსნას
