@@ -2622,3 +2622,63 @@ select.input {
     font-size: 15px;
     text-transform: capitalize;
 }
+
+
+
+
+/* ენის შესაცვლელი დროშები */
+
+.lang-switcher {
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+    
+}
+
+.selected-lang {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    color: #333 !important;
+}
+
+.lang-dropdown {
+    display: none; /* თავიდან დამალულია */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #20113d; /* შენი ფერი */
+    border: 1px solid #f58021;
+    border-radius: 4px;
+    list-style: none;
+    padding: 5px 0;
+    min-width: 80px;
+    z-index: 1000;
+}
+
+/* ეს ახალი კლასია, რომელსაც JS ჩაურთავს დაჭერისას */
+.lang-dropdown.active {
+    display: block;
+}
+
+.lang-dropdown li {
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s, color 0.2s;
+    color: white !important; /* ტექსტი რომ გამოჩნდეს მუქ ფონზე */
+}
+
+/* ჰოვერ ეფექტი - მწვანე ტექსტი, როგორც Sign In-ზე */
+.lang-dropdown li:hover {
+    background: rgba(255, 255, 255, 0.1); 
+    color: #00A389 !important; 
+}
+
+.lang-dropdown img, .selected-lang img {
+    width: 20px;
+    height: auto;
+}

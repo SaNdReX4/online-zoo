@@ -1,3 +1,8 @@
+import { initI18n } from './i18n.js';
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("App Started!");
+    initI18n(); // ენების ინიციალიზაცია
+});
 const nameInputelement = document.querySelector("#email");
 let allFeedbacks = [];
 let allPets = [];
@@ -420,5 +425,4 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-export {};
 //# sourceMappingURL=index.js.map

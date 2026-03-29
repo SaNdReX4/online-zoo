@@ -1,4 +1,11 @@
 import type { Animal, Feedback, ApiResponse } from './types.js';
+import { initI18n } from './i18n.js';
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("App Started!");
+    initI18n(); // ენების ინიციალიზაცია
+    
+});
 
 const nameInputelement = document.querySelector("#email")
 
@@ -461,3 +468,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+
+

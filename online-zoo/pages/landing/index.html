@@ -22,45 +22,60 @@
         </a>
 
         <nav id="nav-menu">
-          <div class="nav-header">
-            <div class="close-menu" id="close-btn">✕</div>
-          </div>
-          <ul>
-            <li><a href="#" class="active-link">ABOUT</a></li>
-            <li><a href="#">MAP</a></li>
-            <li><a href="../zoos-page-panda/index.html" target="_blank">ZOOS</a></li>
-            <li><a href="../contact us/index.html">CONTACT US</a></li>
-            <li><a href="#">DESIGN</a></li>
-          </ul>
-          <div class="social-links">
-            <a href="https://www.youtube.com/"
-              ><img src="../../assets/icons/YouTube.svg" alt="facebook"
-            /></a>
-            <a href="https://www.instagram.com/"
-              ><img src="../../assets/icons/Instagram.svg" alt="instagram"
-            /></a>
-            <a href="https://www.facebook.com/"
-              ><img src="../../assets/icons/Facebook.svg" alt="youtube"
-            /></a>
-          </div>
-          
-          <div class="user-menu-container">
+  <div class="nav-header">
+    <div class="close-menu" id="close-btn">✕</div>
+  </div>
+  <ul>
+    <li><a href="#" class="active-link" data-i18n="nav-about">ABOUT</a></li>
+    <li><a href="#" data-i18n="nav-map">MAP</a></li>
+    <li><a href="../zoos-page-panda/index.html" target="_blank" data-i18n="nav-zoos">ZOOS</a></li>
+    <li><a href="../contact us/index.html" data-i18n="nav-contact">CONTACT US</a></li>
+    <li><a href="#" data-i18n="nav-design">DESIGN</a></li>
+  </ul>
+
+  <div class="social-links">
+    <a href="https://www.youtube.com/"><img src="../../assets/icons/YouTube.svg" alt="facebook" /></a>
+    <a href="https://www.instagram.com/"><img src="../../assets/icons/Instagram.svg" alt="instagram" /></a>
+    <a href="https://www.facebook.com/"><img src="../../assets/icons/Facebook.svg" alt="youtube" /></a>
+  </div>
+
+  <div class="user-menu-container">
     <img src="../../assets/icons/user-solid-full.svg" id="user-icon" alt="User" />
     <div id="user-popup" class="user-popup hidden">
-        <div id="unauthorized-links">
-            <a href="../login/index.html">Sign In</a>
-            <a href="../registration/index.html">Sign Up</a>
-        </div>
-        <div id="authorized-info" class="hidden">
-            <span id="user-display-name"></span>
-            <span id="user-display-email"></span>
-            <hr>
-            <button id="logout-btn">Log Out</button>
-        </div>
+      <div id="unauthorized-links">
+        <a href="../login/index.html" data-i18n="auth-signin">Sign In</a>
+        <a href="../registration/index.html" data-i18n="auth-signup">Sign Up</a>
+      </div>
+      <div id="authorized-info" class="hidden">
+        <span id="user-display-name"></span>
+        <span id="user-display-email"></span>
+        <hr>
+        <button id="logout-btn" data-i18n="auth-logout">Log Out</button>
+      </div>
     </div>
-</div>
+  </div>
 
-        </nav>
+  <!-- ენის შეცვლის ღილაკები -->
+
+  <div class="lang-switcher">
+    <div class="selected-lang">
+      <img src="https://flagcdn.com/w20/gb.png" id="current-flag" alt="EN">
+      <span id="current-lang-text" data-i18n="lang-name">EN</span>
+    </div>
+
+    <ul class="lang-dropdown">
+      <li data-i18n-lang="en">
+        <img src="https://flagcdn.com/w20/gb.png" alt="EN"> 
+        <span data-i18n="lang-en">English</span>
+      </li>
+      <li data-i18n-lang="de">
+        <img src="https://flagcdn.com/w20/de.png" alt="DE"> 
+        <span data-i18n="lang-de">Deutsch</span>
+      </li>
+    </ul>
+  </div>
+</nav>
+      
 
         <div class="burger" id="burger-btn">
           <span class="line"></span>
@@ -73,14 +88,14 @@
     <main>
       <section class="hero">
         <div class="hero-content">
-          <h1 class="visually-hidden">Watch your favorite animal online</h1>
-          <p>
+          <h1 class="visually-hidden" data-i18n="hero-title">Watch your favorite animal online</h1>
+          <p data-i18n="hero-text">
             Explore the exciting and <br />
             mysterious world of wild animals <br />
             in a natural setting without <br />
             leaving your home.
           </p>
-          <a href="#" class="btn-live">
+          <a href="#" class="btn-live" data-i18n="btn-live">
             VIEW LIVE CAM
             <img
               src="../../assets/icons/Union.svg"
@@ -97,87 +112,87 @@
       </section>
 
       <section class="online-zoo">
-        <div class="online-zoo-wrapper">
-          <img
-            src="../../assets/images/7da7da88e0ae297080fdc5e3ac323300033878f0.png"
-            alt="Welcome-image"
-          />
-          <div class="online-zoo-text">
-            <h2>Welcome to the Online Zoo!</h2>
-            <p>
-              On our website, using live <br />
-              webcams, fans of all ages can observe various animals. Among them,
-              are Giant pandas, eagles, alligators, forest gorillas, African
-              <br />
-              lions, and others. It is the whole natural world in real-time in
-              <br />
-              front of our cameras.
-              <span class="extra-text">
-                We hope you will enjoy watching closely and explore animals’
-                behavior and habitats! Note: animals are not always on view on
-                cameras, so please check back if you don't see anything.
-              </span>
-            </p>
-          </div>
-        </div>
-        <div class="how-we-work-wrapper">
-          <img
-            src="../../assets/images/b5bc31bd735b2f44f4b4a38105bfe8f1d599d280.png"
-            alt="eagles"
-          />
-          <div class="how-we-work-text">
-            <h2>How we work</h2>
-            <p>
-              Online Zoo is a nonprofit <br />
-              committed to inspiring <br />
-              awareness and preservation of <br />
-              nature and wild animals in our <br />
-              zoo and worldwide. To continue <br />
-              these efforts, we need your help. We're so grateful to our <br />
-              supporters. All donations, large <br />
-              and small, go a long way to the conservation efforts of our pets.
-            </p>
-            <span
-              >Online Zoo is a nonprofit committed to inspiring awareness and
-              preservation of nature and wild animals in our zoo and worldwide.
-              Every day, our experts work to safeguard the health and wellness
-              of the animals. To continue these efforts, we need your help.
-              We're so grateful to our numerous supporters. All donations, large
-              and small, go a long way to the conservation efforts of our
-              pets.</span
-            >
-          </div>
-        </div>
-      </section>
+  <div class="online-zoo-wrapper">
+    <img
+      src="../../assets/images/7da7da88e0ae297080fdc5e3ac323300033878f0.png"
+      alt="Welcome-image"
+    />
+    <div class="online-zoo-text">
+      <h2 data-i18n="welcome-title">Welcome to the Online Zoo!</h2>
+      <p data-i18n="welcome-p1">
+        On our website, using live <br />
+        webcams, fans of all ages can observe various animals. Among them,
+        are Giant pandas, eagles, alligators, forest gorillas, African
+        <br />
+        lions, and others. It is the whole natural world in real-time in
+        <br />
+        front of our cameras.
+        <span class="extra-text" data-i18n="welcome-p2">
+          We hope you will enjoy watching closely and explore animals’
+          behavior and habitats! Note: animals are not always on view on
+          cameras, so please check back if you don't see anything.
+        </span>
+      </p>
+    </div>
+  </div>
+  <div class="how-we-work-wrapper">
+    <img
+      src="../../assets/images/b5bc31bd735b2f44f4b4a38105bfe8f1d599d280.png"
+      alt="eagles"
+    />
+    <div class="how-we-work-text">
+      <h2 data-i18n="how-work-title">How we work</h2>
+      <p data-i18n="how-work-p1">
+        Online Zoo is a nonprofit <br />
+        committed to inspiring <br />
+        awareness and preservation of <br />
+        nature and wild animals in our <br />
+        zoo and worldwide. To continue <br />
+        these efforts, we need your help. We're so grateful to our <br />
+        supporters. All donations, large <br />
+        and small, go a long way to the conservation efforts of our pets.
+      </p>
+      <span data-i18n="how-work-p2">
+        Online Zoo is a nonprofit committed to inspiring awareness and
+        preservation of nature and wild animals in our zoo and worldwide.
+        Every day, our experts work to safeguard the health and wellness
+        of the animals. To continue these efforts, we need your help.
+        We're so grateful to our numerous supporters. All donations, large
+        and small, go a long way to the conservation efforts of our
+        pets.
+      </span>
+    </div>
+  </div>
+</section>
 
       <section class="your-donation">
-        <div class=" your-donation-text-wrapper" >
-            <h2>Your donation makes a difference!</h2>
-        <p>
-          The Online Zoo's animal webcams are some of the most famous on the
-          internet. Tune in to watch your favourite animals — live, 24/7!
-        </p>
-        </div>
-        <div class="Quick-Donate-wrapper">
-            <h2 class="Quick-Donate-h2">Quick Donate</h2>
-        <div class="donate-form">
-          <div class="input-wrapper">
-            <span>$ DONATION AMOUNT</span>
-          </div>
-          <button class="donate-submit" id="openModalBtn" >
-            <img src="../../assets/icons/Union.svg" alt="arrow" />
-          </button>
-        </div>
-        </div>
-      </section>
+  <div class="your-donation-text-wrapper">
+    <h2 data-i18n="donation-title">Your donation makes a difference!</h2>
+    <p data-i18n="donation-text">
+      The Online Zoo's animal webcams are some of the most famous on the
+      internet. Tune in to watch your favourite animals — live, 24/7!
+    </p>
+  </div>
+  <div class="Quick-Donate-wrapper">
+    <h2 class="Quick-Donate-h2" data-i18n="quick-donate-title">Quick Donate</h2>
+    <div class="donate-form">
+      <div class="input-wrapper">
+        <span data-i18n="donation-amount-label">$ DONATION AMOUNT</span>
+      </div>
+      <button class="donate-submit" id="openModalBtn">
+        <img src="../../assets/icons/Union.svg" alt="arrow" />
+      </button>
+    </div>
+  </div>
+</section>
 
       <!-- იშლება პეტების სექცია რო ჩავსვა ტაიპსკრიფტით -->
 
       <section class="meet-some-our-pets">
   <div class="meet-some-our-pets-satauri-wrapper">
-    <h2 id="meet-some-our-pets-satauri">meet some our Pets</h2>
+    <h2 id="meet-some-our-pets-satauri" data-i18n="pets-title">meet some our Pets</h2>
 
-    <p>Do you have a special place in your heart for animals? Who are your favorites? Perhaps you'd like to donate to special ones or all our pets? We think it's important for you to choose how your donation is used. </p>
+    <p data-i18n="pets-description">Do you have a special place in your heart for animals? Who are your favorites? Perhaps you'd like to donate to special ones or all our pets? We think it's important for you to choose how your donation is used. </p>
     <div class="pets-navigation">
       <button id="prev-pet" class="arrow-btn"><img src="../../assets/icons/arrow-left.svg" alt="prev"></button>
       <button id="next-pet" class="arrow-btn"><img src="../../assets/icons/arrow-right.svg" alt="next"></button>
@@ -185,349 +200,315 @@
   </div>
   
   <div class="card-wrapper" id="pets-container">
-    <p class="loader">Loading pets...</p>
+    <p class="loader" data-i18n="pets-loader">Loading pets...</p>
   </div>
 
-  <a href="#" class="btn-live btn-feedback btn-favorite btn-640px">
+  <a href="#" class="btn-live btn-feedback btn-favorite btn-640px" data-i18n="btn-choose-favourite">
     Choose Your Favourite
     <img src="../../assets/icons/Union5.svg" class="arrow" alt="arrow-logo" />
   </a>
 </section>
 
       <section class="pay-and-feed">
-        <h2 id="pay-and-feed-h2-640px">PAY AND FEED</h2>
-        <div class="numeration">
-          <span>01</span>
-          <div class="xazi"></div>
-        </div>
-        <img
-          src="../../assets/images/83def06be528fbc4f10162a115a81f8dd9ae545b.png"
-          alt="monkey"
-        />
-        <img
-          src="../../assets/icons/Vector.svg"
-          id="pay-and-feed-logos"
-          alt="hearth-logo"
-        />
-        <h2>Your donation has an impact</h2>
-        <p>
-          Providing our animals with high-quality nutritious diets is just one
-          element of animal care at our Zoo. We do all the best so that our
-          animals can eat food similar to what they might find in their natural
-          habitats while making sure they get the right mix of nutrients,
-          proteins, and vitamins to be happy and healthy. Please help us provide
-          nutritious food for our animals by donating.
-          <span class="your-donation-has-an-impact-span"
-            >The generosity of people like you can help us make sure that our
-            animals enjoy good food that keeps them in great condition.</span
-          >
-        </p>
+  <h2 id="pay-and-feed-h2-640px" data-i18n="paf-main-title">PAY AND FEED</h2>
+  <div class="numeration">
+    <span>01</span>
+    <div class="xazi"></div>
+  </div>
+  <img
+    src="../../assets/images/83def06be528fbc4f10162a115a81f8dd9ae545b.png"
+    alt="monkey"
+  />
+  <img
+    src="../../assets/icons/Vector.svg"
+    id="pay-and-feed-logos"
+    alt="hearth-logo"
+  />
+  <h2 data-i18n="paf-impact-title">Your donation has an impact</h2>
+  <p data-i18n="paf-impact-text">
+    Providing our animals with high-quality nutritious diets is just one
+    element of animal care at our Zoo. We do all the best so that our
+    animals can eat food similar to what they might find in their natural
+    habitats while making sure they get the right mix of nutrients,
+    proteins, and vitamins to be happy and healthy. Please help us provide
+    nutritious food for our animals by donating.
+    <span class="your-donation-has-an-impact-span" data-i18n="paf-impact-span">
+      The generosity of people like you can help us make sure that our
+      animals enjoy good food that keeps them in great condition.
+    </span>
+  </p>
 
-        <div class="numeration">
-          <span>02</span>
-          <div class="xazi"></div>
-        </div>
-        <img
-          src="../../assets/images/bbfa19046e4508436e03b22661add376c2bbee4f.png"
-          alt="banana"
-        />
-        <img
-          src="../../assets/icons/Union3.svg"
-          id="pay-and-feed-logos"
-          alt="pc"
-        />
-        <h2>Make a donation</h2>
-        <p>
-          You can donate through your credit card without any fees. It is easy
-          and safe. We do not keep donors' personal information on an online
-          network. Choose an amount to give and the pet's name if needed.
-          <span class="your-donation-has-an-impact-span"
-            >One of the most effective ways you can give is by making regular
-            donations.</span
-          >
-        </p>
-        <div class="numeration">
-          <span>03</span>
-          <div class="xazi"></div>
-        </div>
-        <img
-          src="../../assets/images/0f5da4ab215fc240f8db72d3875c878338dbb22f.png"
-          alt="monkey"
-        />
-        <img
-          src="../../assets/icons/outline 1.svg"
-          id="pay-and-feed-logos"
-          alt="fruit-logo"
-        />
-        <h2>Bring your food charity — straight to your favorites pets.</h2>
-        <p>
-          After your donation, the animal receives its favorite foods. You can
-          support your favorite animals or any animal you care about and make a
-          real personal impact. Never doubt that your donation can make a
-          difference even if it is small.
-        </p>
-        <a href="#" class="btn-live btn-live-2">
-          DONATE NOW
-          <img
-            src="../../assets/icons/Union.svg"
-            class="arrow"
-            alt="arrow-logo"
-          />
-        </a>
-      </section>
+  <div class="numeration">
+    <span>02</span>
+    <div class="xazi"></div>
+  </div>
+  <img
+    src="../../assets/images/bbfa19046e4508436e03b22661add376c2bbee4f.png"
+    alt="banana"
+  />
+  <img
+    src="../../assets/icons/Union3.svg"
+    id="pay-and-feed-logos"
+    alt="pc"
+  />
+  <h2 data-i18n="paf-donate-title">Make a donation</h2>
+  <p data-i18n="paf-donate-text">
+    You can donate through your credit card without any fees. It is easy
+    and safe. We do not keep donors' personal information on an online
+    network. Choose an amount to give and the pet's name if needed.
+    <span class="your-donation-has-an-impact-span" data-i18n="paf-donate-span">
+      One of the most effective ways you can give is by making regular
+      donations.
+    </span>
+  </p>
+  <div class="numeration">
+    <span>03</span>
+    <div class="xazi"></div>
+  </div>
+  <img
+    src="../../assets/images/0f5da4ab215fc240f8db72d3875c878338dbb22f.png"
+    alt="monkey"
+  />
+  <img
+    src="../../assets/icons/outline 1.svg"
+    id="pay-and-feed-logos"
+    alt="fruit-logo"
+  />
+  <h2 data-i18n="paf-charity-title">Bring your food charity — straight to your favorites pets.</h2>
+  <p data-i18n="paf-charity-text">
+    After your donation, the animal receives its favorite foods. You can
+    support your favorite animals or any animal you care about and make a
+    real personal impact. Never doubt that your donation can make a
+    difference even if it is small.
+  </p>
+  <a href="#" class="btn-live btn-live-2" data-i18n="btn-donate-now">
+    DONATE NOW
+    <img
+      src="../../assets/icons/Union.svg"
+      class="arrow"
+      alt="arrow-logo"
+    />
+  </a>
+</section>
 
       <section class="what-our-yousers-think">
-        <div class="what-our-yousers-think-text">
-          <h2>what our users think</h2>
+  <div class="what-our-yousers-think-text">
+    <h2 data-i18n="feedback-title">what our users think</h2>
 
-        
-
-          <p>
-            We are continuously striving to improve the experiences of our
-            future guests. Below you can leave your own feedback, or simply view
-            feedback from past clients.
+    <p data-i18n="feedback-description">
+      We are continuously striving to improve the experiences of our
+      future guests. Below you can leave your own feedback, or simply view
+      feedback from past clients.
+    </p>
+  </div>
+  <div class="card-users-wrapper">
+    <div class="card-users-container" id="cards-container">
+      <div class="card-users">
+        <span class="quotation-mark"> “ </span>
+        <div class="card-users-text">
+          <h3 data-i18n="user-location-date">New Jersey, November 2020</h3>
+          <p data-i18n="user-comment">
+            I am writing to thank you for your mission is to bring people
+            closer to nature! Like myself, children were very impressed by
+            the opportunity to explore the life of incredible animals in
+            real-time.
           </p>
+          <h3 data-i18n="user-name">Karen Maithlan</h3>
         </div>
-        <div class="card-users-wrapper">
-          <div class="card-users-container" id="cards-container">
-            <div class="card-users">
-              <span class="quotation-mark"> “ </span>
-              <div class="card-users-text">
-                <h3>New Jersey, November 2020</h3>
-                <p>
-                  I am writing to thank you for your mission is to bring people
-                  closer to nature! Like myself, children were very impressed by
-                  the opportunity to explore the life of incredible animals in
-                  real-time.
-                </p>
-                <h3>Karen Maithlan</h3>
-              </div>
-            </div>
-            <div class="card-users">
-              <span class="quotation-mark"> “ </span>
-              <div class="card-users-text">
-                <h3>New Jersey, November 2020</h3>
-                <p>
-                  I am writing to thank you for your mission is to bring people
-                  closer to nature! Like myself, children were very impressed by
-                  the opportunity to explore the life of incredible animals in
-                  real-time.
-                </p>
-                <h3>Karen Maithlan</h3>
-              </div>
-            </div>
-            <div class="card-users">
-              <span class="quotation-mark"> “ </span>
-              <div class="card-users-text">
-                <h3>New Jersey, November 2020</h3>
-                <p>
-                  I am writing to thank you for your mission is to bring people
-                  closer to nature! Like myself, children were very impressed by
-                  the opportunity to explore the life of incredible animals in
-                  real-time.
-                </p>
-                <h3>Karen Maithlan</h3>
-              </div>
-            </div>
-            <div class="card-users">
-              <span class="quotation-mark"> “ </span>
-              <div class="card-users-text">
-                <h3>New Jersey, November 2020</h3>
-                <p>
-                  I am writing to thank you for your mission is to bring people
-                  closer to nature! Like myself, children were very impressed by
-                  the opportunity to explore the life of incredible animals in
-                  real-time.
-                </p>
-                <h3>Karen Maithlan</h3>
-              </div>
-            </div>
-          </div>
+      </div>
+      <div class="card-users">
+        <span class="quotation-mark"> “ </span>
+        <div class="card-users-text">
+          <h3 data-i18n="user-location-date">New Jersey, November 2020</h3>
+          <p data-i18n="user-comment">
+            I am writing to thank you for your mission is to bring people
+            closer to nature! Like myself, children were very impressed by
+            the opportunity to explore the life of incredible animals in
+            real-time.
+          </p>
+          <h3 data-i18n="user-name">Karen Maithlan</h3>
         </div>
+      </div>
+      </div>
+  </div>
 
-        <div class="pagination-dots">
-          <span class="dot active" data-index="0"></span>
-          <span class="dot" data-index="1"></span>
-          <span class="dot" data-index="2"></span>
-          <span class="dot" data-index="3"></span>
-        </div>
+  <div class="pagination-dots">
+    <span class="dot active" data-index="0"></span>
+    <span class="dot" data-index="1"></span>
+    <span class="dot" data-index="2"></span>
+    <span class="dot" data-index="3"></span>
+  </div>
 
+  <a href="#" class="btn-live btn-feedback btn-368px" data-i18n="btn-leave-feedback">
+    LEAVE FEEDBACK
+    <img
+      src="../../assets/icons/Union.svg"
+      class="arrow"
+      alt="arrow-logo"
+    />
+  </a>
 
-        <a href="#" class="btn-live btn-feedback btn-368px">
-          LEAVE FEEDBACK
-          <img
-            src="../../assets/icons/Union.svg"
-            class="arrow"
-            alt="arrow-logo"
-          />
-        </a>
+  <div class="feedback-navigation">
+    <button id="prev-feedback" class="arrow-btn"><img src="../../assets/icons/arrow-left.svg" alt="prev"></button>
+    <button id="next-feedback" class="arrow-btn"><img src="../../assets/icons/arrow-right.svg" alt="next"></button>
+  </div>
 
-        <div class="feedback-navigation">
-      <button id="prev-feedback" class="arrow-btn"><img src="../../assets/icons/arrow-left.svg" alt="prev"></button>
-      <button id="next-feedback" class="arrow-btn"><img src="../../assets/icons/arrow-right.svg" alt="next"></button>
-    </div>
-
-        <div class="panda-footer-image">
-          <img
-            src="../../assets/images/e87c39caf02f820394ca694a3d9d5f04acf4d6c9.png"
-            alt="panda"
-          />
-        </div>
-      </section>
+  <div class="panda-footer-image">
+    <img
+      src="../../assets/images/e87c39caf02f820394ca694a3d9d5f04acf4d6c9.png"
+      alt="panda"
+    />
+  </div>
+</section>
       
       
 
       <section class="care-for-animals">
-        <div class="care-for-animals-text">
-            <h2>care for the animals you love</h2>
-        <p>
-          You can help to look after the animals you love with your gift today
+  <div class="care-for-animals-text">
+    <h2 data-i18n="care-title">care for the animals you love</h2>
+    <p data-i18n="care-subtitle">
+      You can help to look after the animals you love with your gift today
+    </p>
+  </div>
+  
+  <div class="card-wrapper care-for-animals-card-wrapper" id="animal-cards-container">
+    <img src="../../assets/images/6ef7c157d8492022658177ac84e17928772bca79.png" class="damatebiti-img" alt="">
+    
+    <div class="card care-for-animals-card">
+      <img
+        src="../../assets/images/image 144.png"
+        class="meore-card-img"
+        alt="koala"
+      />
+      <div class="card-text care-for-animals-card-text ">
+        <p data-i18n="care-card-text">
+          Your $30 could give Lucas a slice of panda cake, made with our
+          secret recipe.
         </p>
-        </div>
-        
-        <div class="card-wrapper care-for-animals-card-wrapper" id="animal-cards-container">
-          <img src="../../assets/images/6ef7c157d8492022658177ac84e17928772bca79.png" class="damatebiti-img" alt="">
-          <div class="card care-for-animals-card">
-            <img
-              src="../../assets/images/image 144.png"
-              class="meore-card-img"
-              alt="koala"
-            />
-            <div class="card-text care-for-animals-card-text ">
-              <p>
-                Your $30 could give Lucas a slice of panda cake, made with our
-                secret recipe.
-              </p>
-              <a href="#" class="promo-trigger-btn">
-                FEED
-                <img src="../../assets/icons/Union2.svg" alt="arrow-logo" />
-              </a>
-            </div>
-          </div>
+        <a href="#" class="promo-trigger-btn" data-i18n="btn-feed">
+          FEED
+          <img src="../../assets/icons/Union2.svg" alt="arrow-logo" />
+        </a>
+      </div>
+    </div>
 
-          <div class="card care-for-animals-card">
-            <img
-              src="../../assets/images/image 144.png"
-              class="meore-card-img"
-              alt="koala"
-            />
-            <div class="card-text care-for-animals-card-text">
-              <p>
-                Your $30 could give Lucas a slice of panda cake, made with our
-                secret recipe.
-              </p>
-              <a href="#" class="promo-trigger-btn">
-                FEED
-                <img src="../../assets/icons/Union2.svg" alt="arrow-logo" />
-              </a>
-            </div>
-          </div>
+    <div class="card care-for-animals-card">
+      <img
+        src="../../assets/images/image 144.png"
+        class="meore-card-img"
+        alt="koala"
+      />
+      <div class="card-text care-for-animals-card-text">
+        <p data-i18n="care-card-text">
+          Your $30 could give Lucas a slice of panda cake, made with our
+          secret recipe.
+        </p>
+        <a href="#" class="promo-trigger-btn" data-i18n="btn-feed">
+          FEED
+          <img src="../../assets/icons/Union2.svg" alt="arrow-logo" />
+        </a>
+      </div>
+    </div>
 
-          <div class="card care-for-animals-card">
-            <img
-              src="../../assets/images/image 144.png"
-              class="meore-card-img"
-              alt="koala"
-            />
-            <div class="card-text care-for-animals-card-text">
-              <p>
-                Your $30 could give Lucas a slice of panda cake, made with our
-                secret recipe.
-              </p>
-              <a href="#" class="promo-trigger-btn">
-                FEED
-                <img src="../../assets/icons/Union2.svg" alt="arrow-logo" />
-              </a>
-            </div>
-          </div>
+    <div class="card care-for-animals-card">
+      <img
+        src="../../assets/images/image 144.png"
+        class="meore-card-img"
+        alt="koala"
+      />
+      <div class="card-text care-for-animals-card-text">
+        <p data-i18n="care-card-text">
+          Your $30 could give Lucas a slice of panda cake, made with our
+          secret recipe.
+        </p>
+        <a href="#" class="promo-trigger-btn" data-i18n="btn-feed">
+          FEED
+          <img src="../../assets/icons/Union2.svg" alt="arrow-logo" />
+        </a>
+      </div>
+    </div>
 
-          <div class="card care-for-animals-card">
-            <img
-              src="../../assets/images/image 144.png"
-              class="meore-card-img"
-              alt="koala"
-            />
-            <div class="card-text care-for-animals-card-text">
-              <p>
-                Your $30 could give Lucas a slice of panda cake, made with our
-                secret recipe.
-              </p>
-              <a href="#" class="promo-trigger-btn">
-                FEED 
-                <img src="../../assets/icons/Union2.svg" alt="arrow-logo" />
-              </a>
-            </div>
-          </div>
-        </div>
+    <div class="card care-for-animals-card">
+      <img
+        src="../../assets/images/image 144.png"
+        class="meore-card-img"
+        alt="koala"
+      />
+      <div class="card-text care-for-animals-card-text">
+        <p data-i18n="care-card-text">
+          Your $30 could give Lucas a slice of panda cake, made with our
+          secret recipe.
+        </p>
+        <a href="#" class="promo-trigger-btn" data-i18n="btn-feed">
+          FEED 
+          <img src="../../assets/icons/Union2.svg" alt="arrow-logo" />
+        </a>
+      </div>
+    </div>
+  </div>
 
-        <div class="pagination-dots  pagination-dots-2"  >
-          <span class="animal-dot animal-dot-2 active" data-index="0"></span>
-          <span class="animal-dot animal-dot-2" data-index="1"></span>
-          <span class="animal-dot animal-dot-2" data-index="2"></span>
-          <span class="animal-dot animal-dot-2" data-index="3"></span>
-        </div>
+  <div class="pagination-dots  pagination-dots-2"  >
+    <span class="animal-dot animal-dot-2 active" data-index="0"></span>
+    <span class="animal-dot animal-dot-2" data-index="1"></span>
+    <span class="animal-dot animal-dot-2" data-index="2"></span>
+    <span class="animal-dot animal-dot-2" data-index="3"></span>
+  </div>
 
-        <div class="butona">
-          <a href="#" class="btn-live btn-feedback btn-favorite">
-            Choose Your Favourite
-            <img
-              src="../../assets/icons/Union5.svg"
-              class="arrow"
-              alt="arrow-logo"
-            />
-          </a>
-        </div>
-        <img
-          src="../../assets/images/943e32b080a4e96ed0413ee71d520750c6941767.jpg"
-          class="lemur"
-          alt="lemur"
-        />
-      </section>
+  <div class="butona">
+    <a href="#" class="btn-live btn-feedback btn-favorite" data-i18n="btn-choose-favourite">
+      Choose Your Favourite
+      <img
+        src="../../assets/icons/Union5.svg"
+        class="arrow"
+        alt="arrow-logo"
+      />
+    </a>
+  </div>
+  <img
+    src="../../assets/images/943e32b080a4e96ed0413ee71d520750c6941767.jpg"
+    class="lemur"
+    alt="lemur"
+  />
+</section>
     </main>
 
     <footer>
-      <div class="logos ">
-        <img src="../../assets/icons/Logo1.svg" alt="zoo-logo" />
-        <img src="../../assets/icons/Yem Digital.svg" alt="yem Digital" />
-        <img src="../../assets/icons/rs_school_js logo.svg" alt="rs school" />
-      </div>
-      <div class="about">
-        <ul>
-          <li>About</li>
-          <li>map</li>
-          <li>Zoos</li>
-          <li>Contact us</li>
-        </ul>
-      </div>
-      <a href="#" class="btn-live btn-feedback footer-btn">
-        Donate for volunteers
-        <img
-          src="../../assets/icons/Union.svg"
-          class="arrow"
-          alt="arrow-logo"
-        />
-      </a>
+  <div class="logos ">
+    <img src="../../assets/icons/Logo1.svg" alt="zoo-logo" />
+    <img src="../../assets/icons/Yem Digital.svg" alt="yem Digital" />
+    <img src="../../assets/icons/rs_school_js logo.svg" alt="rs school" />
+  </div>
+  <div class="about">
+    <ul>
+      <li data-i18n="nav-about">About</li>
+      <li data-i18n="nav-map">map</li>
+      <li data-i18n="nav-zoos">Zoos</li>
+      <li data-i18n="nav-contact">Contact us</li>
+    </ul>
+  </div>
+  <a href="#" class="btn-live btn-feedback footer-btn" data-i18n="footer-btn-donate">
+    Donate for volunteers
+    <img
+      src="../../assets/icons/Union.svg"
+      class="arrow"
+      alt="arrow-logo"
+    />
+  </a>
 
-      <div class="social-links footer-social-links">
-        <a href="#"
-          ><img src="../../assets/icons/YouTube.svg" alt="facebook"
-        /></a>
-        <a href="#"
-          ><img src="../../assets/icons/instagram.svg" alt="instagram"
-        /></a>
-        <a href="#"
-          ><img src="../../assets/icons/Facebook.svg" alt="youtube"
-        /></a>
-      </div>
+  <div class="social-links footer-social-links">
+    <a href="#"><img src="../../assets/icons/YouTube.svg" alt="facebook" /></a>
+    <a href="#"><img src="../../assets/icons/instagram.svg" alt="instagram" /></a>
+    <a href="#"><img src="../../assets/icons/Facebook.svg" alt="youtube" /></a>
+  </div>
 
-      <hr />
+  <hr />
 
-      <ul class="footer-ended">
-        <li>© 2021 DinaK</li>
-        <li>© Yem Digital</li>
-        <li>© RSSchool</li>
-      </ul>
-    </footer>
+  <ul class="footer-ended">
+    <li>© 2021 DinaK</li>
+    <li>© Yem Digital</li>
+    <li>© RSSchool</li>
+  </ul>
+</footer>
 
 
 <!-- Pop up -->
@@ -540,13 +521,13 @@
             <span class="close-modal" id="closeModalBtn">&times;</span>
             
             <div class="topbar">
-                <h1>MAKE YOUR DONATION</h1>
+                <h1 data-i18n="modal-title">MAKE YOUR DONATION</h1>
             </div>
 
             <div class="step active" data-step="1">
-    <div class="section-head">Donation Information:</div>
+    <div class="section-head" data-i18n="modal-donation-info">Donation Information:</div>
     <div class="content">
-        <div class="label"><span class="req">*</span>Choose your donation amount:</div>
+        <div class="label"><span class="req">*</span><span data-i18n="modal-choose-amount">Choose your donation amount:</span></div>
         
         <div class="amount-grid">
             <button class="amt" type="button" data-amt="10">$10</button>
@@ -558,20 +539,20 @@
         </div>
 
         <div class="donation-row">
-            <div class="row-label">OTHER AMOUNT</div>
-            <input class="input" id="otherAmountInput" type="number" placeholder="Amount">
+            <div class="row-label" data-i18n="modal-other-amount">OTHER AMOUNT</div>
+            <input class="input" id="otherAmountInput" type="number" placeholder="Amount" data-i18n-placeholder="modal-placeholder-amount">
         </div>
 
         <div class="donation-row">
-            <div class="row-label">FOR SPECIAL PET</div>
+            <div class="row-label" data-i18n="modal-special-pet">FOR SPECIAL PET</div>
             <select class="input" id="pet-select">
-                <option value="" disabled selected>Choose your favourite</option>
+                <option value="" disabled selected data-i18n="modal-choose-fav">Choose your favourite</option>
                 </select>
         </div>
 
         <div class="recurring-check">
             <input type="checkbox" id="recurring">
-            <label for="recurring">Make this a monthly recurring gift</label>
+            <label for="recurring" data-i18n="modal-recurring">Make this a monthly recurring gift</label>
         </div>
 
         <div class="footer">
@@ -581,53 +562,53 @@
                 <div class="dot"></div>
             </div>
             <div class="nav">
-                <button class="btn-primary" type="button" id="next1">NEXT</button>
+                <button class="btn-primary" type="button" id="next1" data-i18n="btn-next">NEXT</button>
             </div>
         </div>
     </div>
 </div>
 
             <div class="step" data-step="2">
-                <div class="section-head">Billing Information:</div>
+                <div class="section-head" data-i18n="modal-billing-info">Billing Information:</div>
                 <div class="content">
-                    <div class="label"><span class="req">*</span>Your Name</div>
-                    <input class="input" id="fullName" placeholder="First and last name">
-                    <div class="label"><span class="req">*</span>Email Address</div>
+                    <div class="label"><span class="req">*</span><span data-i18n="modal-your-name">Your Name</span></div>
+                    <input class="input" id="fullName" placeholder="First and last name" data-i18n-placeholder="modal-placeholder-name">
+                    <div class="label"><span class="req">*</span><span data-i18n="modal-email-address">Email Address</span></div>
                     <input class="input" id="email" type="email" placeholder="email@example.com">
                     <div class="footer">
                         <div class="dots"><div class="dot active"></div><div class="dot active"></div><div class="dot"></div></div>
                         <div class="nav">
-                            <div class="back" id="backTo1">Back</div>
-                            <button class="btn-primary" type="button" id="next2">NEXT</button>
+                            <div class="back" id="backTo1" data-i18n="btn-back">Back</div>
+                            <button class="btn-primary" type="button" id="next2" data-i18n="btn-next">NEXT</button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="step" data-step="3">
-    <div class="section-head">Payment Details:</div>
+    <div class="section-head" data-i18n="modal-payment-details">Payment Details:</div>
     <div class="content">
         
         <div id="saved-cards-container" style="display: none; margin-bottom: 20px;">
-            <div class="label">Choose a saved card</div>
+            <div class="label" data-i18n="modal-choose-card">Choose a saved card</div>
             <select class="input" id="saved-cards-select">
-                <option value="">Select a card...</option>
+                <option value="" data-i18n="modal-select-card">Select a card...</option>
             </select>
         </div>
-        <div class="label"><span class="req">*</span>Card Number</div>
+        <div class="label"><span class="req">*</span><span data-i18n="modal-card-number">Card Number</span></div>
         <input class="input" id="cardNumber" placeholder="0000 0000 0000 0000">
 
         <div class="payment-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px;">
             <div class="field-group">
-                <div class="label"><span class="req">*</span>CVV Number</div>
+                <div class="label"><span class="req">*</span><span data-i18n="modal-cvv">CVV Number</span></div>
                 <input class="input" id="cvvNumber" placeholder="123" maxlength="3">
             </div>
 
             <div class="field-group">
-                <div class="label"><span class="req">*</span>Expiration Date</div>
+                <div class="label"><span class="req">*</span><span data-i18n="modal-expiration">Expiration Date</span></div>
                 <div style="display: flex; gap: 5px;">
                     <select class="input" id="expMonth" style="padding: 10px 5px;">
-                        <option value="" disabled selected>Month</option>
+                        <option value="" disabled selected data-i18n="modal-month">Month</option>
                         <option value="01">01</option><option value="02">02</option>
                         <option value="03">03</option><option value="04">04</option>
                         <option value="05">05</option><option value="06">06</option>
@@ -636,7 +617,7 @@
                         <option value="11">11</option><option value="12">12</option>
                     </select>
                     <select class="input" id="expYear" style="padding: 10px 5px;">
-                        <option value="" disabled selected>Year</option>
+                        <option value="" disabled selected data-i18n="modal-year">Year</option>
                         <option value="26">26</option><option value="27">27</option>
                         <option value="28">28</option><option value="29">29</option>
                         <option value="30">30</option>
@@ -647,7 +628,7 @@
 
         <div class="recurring-check" id="saveCardWrapper" style="display: flex; align-items: center; gap: 8px; margin-top: 15px; font-size: 13px;">
             <input type="checkbox" id="saveCardInfo">
-            <label for="saveCardInfo">Save card info for future donations</label>
+            <label for="saveCardInfo" data-i18n="modal-save-card">Save card info for future donations</label>
         </div>
 
         <div class="footer">
@@ -657,8 +638,8 @@
                 <div class="dot active"></div>
             </div>
             <div class="nav">
-                <div class="back" id="backTo2">Back</div>
-                <button class="btn-primary orange" type="button" id="complete">COMPLETE</button>
+                <div class="back" id="backTo2" data-i18n="btn-back">Back</div>
+                <button class="btn-primary orange" type="button" id="complete" data-i18n="btn-complete">COMPLETE</button>
             </div>
         </div>
     </div>
@@ -681,8 +662,8 @@
         </div>
 
         <div class="promo-body">
-            <h2 class="promo-title">TOGETHER WE CARE, <br> SAVE AND PROTECT!</h2>
-            <p class="promo-text">
+            <h2 class="promo-title" data-i18n="promo-title">TOGETHER WE CARE, <br> SAVE AND PROTECT!</h2>
+            <p class="promo-text" data-i18n="promo-description">
                 Your most generous gift not only cares for countless animals, 
                 but it also offers hope and a vital lifeline to the world’s most 
                 endangered wildlife relying on us to survive.
@@ -694,7 +675,7 @@
                 <button class="promo-amt-btn">$50</button>
                 <button class="promo-amt-btn">$80</button>
                 <button class="promo-amt-btn">$100</button>
-                <button class="promo-other-btn">OTHER AMOUNT</button>
+                <button class="promo-other-btn" data-i18n="modal-other-amount">OTHER AMOUNT</button>
             </div>
         </div>
     </div>
